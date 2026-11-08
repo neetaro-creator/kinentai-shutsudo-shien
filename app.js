@@ -1,6 +1,7 @@
 // app.js
 import { judge } from './src/judge.js';
 import { allocation } from './src/allocation.js';
+import { mountQuakePanel } from './src/quake-ui.js';
 
 const KEY_HONBU = 'kinentai.honbu';
 const KEY_CHECK = 'kinentai.check.';
@@ -36,7 +37,8 @@ let myHonbu = null;         // 保存された自本部
 let viewHonbu = null;       // 表示中の本部
 let showPicker = false;
 const inp = { actionPlan:'', maxShindo:'', place:'general', count:'', sea:false, epPref:'', maxPref:'', tsunami:[], eruption:false, nd:'' };
-let headerEl, resultsEl;
+let headerEl, resultsEl, formEl, quakeEl;
+let quakeData = null;      // 地震情報取り込み用の地域データ（読めなくても本体は動く）
 
 async function loadJson(name){
   const r = await fetch('./data/'+name);
@@ -94,7 +96,10 @@ function buildMain(){
   if (!viewHonbu) viewHonbu = myHonbu;
   headerEl = el('div');
   resultsEl = el('main',{'aria-label':'判定結果'});
-  app.replaceChildren(disclaimerEl(), headerEl, versionEl(), buildForm(), resultsEl);
+  formEl = buildForm();
+  quakeEl = el('div',{class:'quake-wrap no-print'});
+  mountQuakePanel(quakeEl, { loadData: loadQuakeData, apply: applyQuake });
+  app.replaceChildren(disclaimerEl(), headerEl, versionEl(), quakeEl, formEl, resultsEl);
   renderHeader();
   renderResults();
 }
@@ -144,17 +149,39 @@ function buildForm(){
       el('label',{class:'opt row'},el('input',{type:'checkbox',style:'width:22px;height:22px',checked:inp.sea,onchange:e=>{inp.sea=e.target.checked;sync();update();}}),' 震央が海域'),
       epWrap, mxWrap),
     el('fieldset',null,el('legend',null,'大津波警報が発表された都道府県（複数選択）'),
-      el('details',null,el('summary',null,'都道府県を選ぶ'),
+      el('details',{open:inp.tsunami.length>0},el('summary',null,'都道府県を選ぶ'),
         el('div',{class:'grid2'},PREFS.map(p=>el('label',{class:'opt row',style:'display:flex;gap:6px;align-items:center;min-height:44px'},
-          el('input',{type:'checkbox',style:'width:22px;height:22px',value:p,onchange:e=>{
+          el('input',{type:'checkbox',style:'width:22px;height:22px',value:p,checked:inp.tsunami.includes(p),onchange:e=>{
             inp.tsunami = e.target.checked ? [...inp.tsunami,p] : inp.tsunami.filter(x=>x!==p); update();}}),p))))),
     el('label',{class:'opt row',style:'display:flex;gap:6px;align-items:center;min-height:44px'},
-      el('input',{type:'checkbox',style:'width:22px;height:22px',onchange:e=>{inp.eruption=e.target.checked;update();}}),'噴火警報（居住区域）が発表された'),
+      el('input',{type:'checkbox',style:'width:22px;height:22px',checked:inp.eruption,onchange:e=>{inp.eruption=e.target.checked;update();}}),'噴火警報（居住区域）が発表された'),
     radioGroup('国家的非常災害か','nd',[['','不明'],['true','はい'],['false','いいえ']],()=>inp.nd,v=>inp.nd=v));
   sync();
   return f;
 }
 function update(){ renderResults(); }
+
+/* ---------- 地震情報の取り込み（F8） ---------- */
+async function loadQuakeData(){
+  if (!quakeData){
+    const [cities, tsunamiMap] = await Promise.all([loadJson('cities.json'), loadJson('tsunami_area_map.json')]);
+    quakeData = { cities, tsunamiMap };
+  }
+  return quakeData;
+}
+// 取り込んだ値を状況入力へ反映する（アクションプラン・噴火警報・国家的非常災害は触らない）
+function applyQuake(input){
+  inp.maxShindo = input.maxShindo || '';
+  inp.place = input.maxShindoPlace || 'general';
+  inp.count = String(input.qualifyingPrefCount || 0);
+  inp.sea = !!input.epicenterSea;
+  inp.epPref = input.epicenterPref || '';
+  inp.maxPref = input.maxShindoPref || '';
+  inp.tsunami = (input.tsunamiPrefs || []).slice();
+  const f = buildForm();
+  formEl.replaceWith(f); formEl = f;
+  renderResults();
+}
 
 /* ---------- 判定 ---------- */
 function buildInput(){

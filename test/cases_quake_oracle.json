@@ -1,0 +1,5615 @@
+{
+ "cases": [
+  {
+   "id": "S3-01",
+   "note": "大津波警報(MajorWarning)の予報区が1つ（和歌山県）。津波警報・注意報の予報区は含めない。全ケース共通の前提として、海域なら epicenterPref=null、陸域なら maxShindoPref=null とする。tsunamiPrefs は出現順に並べるが、集合として比べてもよい。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/08 01:04:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/08 01:05:40",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "和歌山県",
+       "addr": "和歌山県南部",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "三重県",
+       "addr": "三重県南部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "和歌山県",
+       "addr": "和歌山県北部",
+       "isArea": true,
+       "scale": 45
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/08 01:04:00",
+      "hypocenter": {
+       "name": "和歌山県南方沖"
+      },
+      "maxScale": -1,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/08 01:07:10",
+      "type": "Destination"
+     },
+     "points": []
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/08 01:04:00",
+      "hypocenter": {
+       "name": "和歌山県南方沖"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/08 01:12:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "和歌山県",
+       "addr": "串本町潮岬",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "和歌山県",
+       "addr": "田辺市新庄町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "三重県",
+       "addr": "尾鷲市中央町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "高知県",
+       "addr": "室戸市室戸岬町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/08 01:08:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "和歌山県",
+       "immediate": true
+      },
+      {
+       "grade": "Warning",
+       "name": "三重県南部",
+       "immediate": true
+      },
+      {
+       "grade": "Warning",
+       "name": "高知県",
+       "immediate": false
+      },
+      {
+       "grade": "Watch",
+       "name": "徳島県",
+       "immediate": false
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "和歌山",
+    "tsunamiPrefs": [
+     "和歌山"
+    ],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S3-02",
+   "note": "大津波警報の予報区が複数の都道府県に対応する（東京湾内湾→東京・千葉・神奈川）。千葉県九十九里・外房と相模湾・三浦半島の分は重複として除く。ScaleAndDestination の区域の点は使わない。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/09 14:22:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 60,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/09 14:23:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "千葉県",
+       "addr": "千葉県東部",
+       "isArea": true,
+       "scale": 60
+      },
+      {
+       "pref": "茨城県",
+       "addr": "茨城県南部",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "千葉県",
+       "addr": "千葉県北西部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "東京都",
+       "addr": "東京都２３区",
+       "isArea": true,
+       "scale": 45
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/09 14:22:00",
+      "hypocenter": {
+       "name": "千葉県東方沖"
+      },
+      "maxScale": 60,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/09 14:25:00",
+      "type": "ScaleAndDestination"
+     },
+     "points": [
+      {
+       "pref": "千葉県",
+       "addr": "千葉県東部",
+       "isArea": true,
+       "scale": 60
+      },
+      {
+       "pref": "茨城県",
+       "addr": "茨城県南部",
+       "isArea": true,
+       "scale": 55
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/09 14:22:00",
+      "hypocenter": {
+       "name": "千葉県東方沖"
+      },
+      "maxScale": 60,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/09 14:30:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "千葉県",
+       "addr": "銚子市川口町",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "千葉県",
+       "addr": "旭市南堀之内",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "千葉県",
+       "addr": "千葉中央区中央港",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "茨城県",
+       "addr": "神栖市溝口",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "東京都",
+       "addr": "千代田区大手町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/09 14:26:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "東京湾内湾",
+       "immediate": false
+      },
+      {
+       "grade": "MajorWarning",
+       "name": "千葉県九十九里・外房",
+       "immediate": true
+      },
+      {
+       "grade": "MajorWarning",
+       "name": "相模湾・三浦半島",
+       "immediate": false
+      },
+      {
+       "grade": "Warning",
+       "name": "伊豆諸島",
+       "immediate": false
+      },
+      {
+       "grade": "Warning",
+       "name": "茨城県",
+       "immediate": true
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "千葉",
+    "tsunamiPrefs": [
+     "東京",
+     "千葉",
+     "神奈川"
+    ],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S3-03",
+   "note": "伊勢・三河湾（愛知・三重）を含む大津波警報が複数あり、重複を除く。震度7の点が静岡に2点・愛知に1点あるため maxShindoPref は静岡になり、『要確認: 愛知』の警告が出る。最大震度の点に浜松の区があるので seirei。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/10 09:15:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 70,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/10 09:16:20",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "静岡県",
+       "addr": "静岡県西部",
+       "isArea": true,
+       "scale": 70
+      },
+      {
+       "pref": "愛知県",
+       "addr": "愛知県東部",
+       "isArea": true,
+       "scale": 70
+      },
+      {
+       "pref": "愛知県",
+       "addr": "愛知県西部",
+       "isArea": true,
+       "scale": 60
+      },
+      {
+       "pref": "三重県",
+       "addr": "三重県北部",
+       "isArea": true,
+       "scale": 55
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/10 09:15:00",
+      "hypocenter": {
+       "name": "遠州灘"
+      },
+      "maxScale": 70,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/10 09:28:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "静岡県",
+       "addr": "浜松中央区三組町",
+       "isArea": false,
+       "scale": 70
+      },
+      {
+       "pref": "静岡県",
+       "addr": "湖西市新居町浜名",
+       "isArea": false,
+       "scale": 70
+      },
+      {
+       "pref": "愛知県",
+       "addr": "豊橋市向山町",
+       "isArea": false,
+       "scale": 70
+      },
+      {
+       "pref": "愛知県",
+       "addr": "名古屋中区県庁",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "三重県",
+       "addr": "津市島崎町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "静岡県",
+       "addr": "静岡葵区追手町",
+       "isArea": false,
+       "scale": 55
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/10 09:18:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "静岡県",
+       "immediate": true
+      },
+      {
+       "grade": "MajorWarning",
+       "name": "愛知県外海",
+       "immediate": true
+      },
+      {
+       "grade": "MajorWarning",
+       "name": "伊勢・三河湾",
+       "immediate": false
+      },
+      {
+       "grade": "MajorWarning",
+       "name": "三重県南部",
+       "immediate": true
+      },
+      {
+       "grade": "Warning",
+       "name": "和歌山県",
+       "immediate": true
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 3,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "静岡",
+    "tsunamiPrefs": [
+     "静岡",
+     "愛知",
+     "三重"
+    ],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S3-04",
+   "note": "有明・八代海の大津波警報が5県（福岡・佐賀・長崎・熊本・鹿児島）に展開される。熊本県天草灘沿岸は津波警報なので入れない。震央は陸域で熊本。最大震度の点（益城町）は一般の市町村。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/11 21:26:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 70,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/11 21:27:10",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "熊本県",
+       "addr": "熊本県熊本",
+       "isArea": true,
+       "scale": 70
+      },
+      {
+       "pref": "熊本県",
+       "addr": "熊本県阿蘇",
+       "isArea": true,
+       "scale": 60
+      },
+      {
+       "pref": "大分県",
+       "addr": "大分県西部",
+       "isArea": true,
+       "scale": 55
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/11 21:26:00",
+      "hypocenter": {
+       "name": "熊本県熊本地方"
+      },
+      "maxScale": 70,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/11 21:40:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "熊本県",
+       "addr": "益城町宮園",
+       "isArea": false,
+       "scale": 70
+      },
+      {
+       "pref": "熊本県",
+       "addr": "熊本東区佐土原",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "熊本県",
+       "addr": "熊本中央区大江",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "大分県",
+       "addr": "由布市湯布院町川上",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "福岡県",
+       "addr": "柳川市三橋町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "佐賀県",
+       "addr": "佐賀市駅前中央",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/11 21:30:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "有明・八代海",
+       "immediate": true
+      },
+      {
+       "grade": "Warning",
+       "name": "熊本県天草灘沿岸",
+       "immediate": false
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": false,
+    "epicenterPref": "熊本",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [
+     "福岡",
+     "佐賀",
+     "長崎",
+     "熊本",
+     "鹿児島"
+    ],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S3-05",
+   "note": "表にない予報区名（大阪湾）が大津波警報に含まれるので警告し、その名前は捨てる。表にある大阪府は大阪として入れる。最大震度の点に大阪北区があるので seirei。京都伏見区の5強の点で京都府も数える。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/12 07:58:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/12 07:59:20",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "大阪府",
+       "addr": "大阪府北部",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "京都府",
+       "addr": "京都府南部",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/12 07:58:00",
+      "hypocenter": {
+       "name": "大阪府北部"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/12 08:10:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "大阪府",
+       "addr": "大阪北区茶屋町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "大阪府",
+       "addr": "高槻市桃園町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "大阪府",
+       "addr": "枚方市大垣内",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "京都府",
+       "addr": "京都伏見区竹田",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "兵庫県",
+       "addr": "尼崎市昭和通",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/12 08:02:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "大阪湾",
+       "immediate": true
+      },
+      {
+       "grade": "MajorWarning",
+       "name": "大阪府",
+       "immediate": true
+      },
+      {
+       "grade": "Warning",
+       "name": "兵庫県瀬戸内海沿岸",
+       "immediate": false
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [
+     "大阪"
+    ],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S3-06",
+   "note": "大津波警報の予報区名が『伊勢･三河湾』（中黒が半角の･）で表の『伊勢・三河湾』と一致しないので、表にない名前として警告し、tsunamiPrefs は空になる。震度5強の点は一般の市町村だけなので qualifyingPrefCount は0。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/13 03:40:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/13 03:41:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "三重県",
+       "addr": "三重県南部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "愛知県",
+       "addr": "愛知県東部",
+       "isArea": true,
+       "scale": 45
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/13 03:40:00",
+      "hypocenter": {
+       "name": "三重県南東沖"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/13 03:50:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "三重県",
+       "addr": "鳥羽市鳥羽",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "三重県",
+       "addr": "志摩市阿児町鵜方",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "愛知県",
+       "addr": "田原市福江町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/13 03:44:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "伊勢･三河湾",
+       "immediate": false
+      },
+      {
+       "grade": "Warning",
+       "name": "三重県南部",
+       "immediate": true
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "三重",
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S3-07",
+   "note": "津波予報が津波警報（Warning）・注意報（Watch）・Unknown だけなので tsunamiPrefs は空になり、警告も出ない。仙台宮城野区は5強で、宮城県は6弱の点で数える。宮城県の川崎町は政令市の川崎ではない。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/14 16:02:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/14 16:03:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "宮城県",
+       "addr": "宮城県北部",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "宮城県",
+       "addr": "宮城県中部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "岩手県",
+       "addr": "岩手県内陸南部",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/14 16:02:00",
+      "hypocenter": {
+       "name": "宮城県沖"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/14 16:15:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "宮城県",
+       "addr": "石巻市桃生町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "宮城県",
+       "addr": "仙台宮城野区苦竹",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "宮城県",
+       "addr": "川崎町前川",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "岩手県",
+       "addr": "一関市千厩町",
+       "isArea": false,
+       "scale": 50
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/14 16:06:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "Warning",
+       "name": "宮城県",
+       "immediate": true
+      },
+      {
+       "grade": "Watch",
+       "name": "岩手県",
+       "immediate": false
+      },
+      {
+       "grade": "Watch",
+       "name": "福島県",
+       "immediate": false
+      },
+      {
+       "grade": "Unknown",
+       "name": "青森県太平洋沿岸",
+       "immediate": false
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S3-08",
+   "note": "最新の552（配列の先頭）が cancelled=true なので、それより古い大津波警報があっても tsunamiPrefs は空になる。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/15 11:11:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/15 11:12:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "茨城県",
+       "addr": "茨城県北部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "福島県",
+       "addr": "福島県浜通り",
+       "isArea": true,
+       "scale": 45
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/15 11:11:00",
+      "hypocenter": {
+       "name": "茨城県沖"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Watch"
+     },
+     "issue": {
+      "time": "2026/11/15 11:20:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "茨城県",
+       "addr": "日立市助川小学校",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "茨城県",
+       "addr": "水戸市金町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "福島県",
+       "addr": "いわき市小名浜",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": true,
+     "issue": {
+      "time": "2026/11/15 12:30:00",
+      "type": "Focus"
+     },
+     "areas": []
+    },
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/15 11:14:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "茨城県",
+       "immediate": true
+      },
+      {
+       "grade": "Warning",
+       "name": "福島県",
+       "immediate": true
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "茨城",
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S3-09",
+   "note": "552が無い（[]）ので tsunamiPrefs は空になり、警告も出ない。最大震度の点が千代田区なので tokyo23。東京（6弱）と神奈川（川崎川崎区の5強）を数え、浦安市の5強は一般の市なので数えない。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/16 22:45:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/16 22:46:20",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "東京都２３区",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "神奈川県東部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "千葉県",
+       "addr": "千葉県北西部",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/16 22:45:00",
+      "hypocenter": {
+       "name": "東京都２３区"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/16 22:55:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "千代田区大手町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "東京都",
+       "addr": "江東区越中島",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "川崎川崎区宮前町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "千葉県",
+       "addr": "浦安市猫実",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "埼玉県",
+       "addr": "さいたま浦和区高砂",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S3-10",
+   "note": "最新の552は cancelled=false で、北海道太平洋沿岸東部が大津波警報なので北海道を入れる（古い取消は無視する）。震央の『北海道東方沖』は北海道を除いた『東方沖』で海域と判定する。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/17 05:30:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/17 05:31:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "北海道",
+       "addr": "根室地方中部",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "北海道",
+       "addr": "釧路地方中南部",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/17 05:30:00",
+      "hypocenter": {
+       "name": "北海道東方沖"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/17 05:42:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "北海道",
+       "addr": "別海町常盤",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "北海道",
+       "addr": "根室市納沙布",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "北海道",
+       "addr": "釧路市黒金町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "北海道",
+       "addr": "札幌中央区北1条",
+       "isArea": false,
+       "scale": 30
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/17 05:36:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "北海道太平洋沿岸東部",
+       "immediate": true
+      },
+      {
+       "grade": "Warning",
+       "name": "北海道太平洋沿岸中部",
+       "immediate": false
+      },
+      {
+       "grade": "Watch",
+       "name": "オホーツク海沿岸",
+       "immediate": false
+      }
+     ]
+    },
+    {
+     "code": 552,
+     "cancelled": true,
+     "issue": {
+      "time": "2026/11/16 09:00:00",
+      "type": "Focus"
+     },
+     "areas": []
+    }
+   ],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "北海道",
+    "tsunamiPrefs": [
+     "北海道"
+    ],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S3-11",
+   "note": "maxScale が -1 の震度速報だけ（観測点は区域名）。maxShindo は null で警告が出る。DetailScale が無いこと・震央地名が空であることでも警告が出る。scale が -1 の点は無いので general。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/18 13:13:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": -1,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/18 13:14:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "静岡県",
+       "addr": "静岡県中部",
+       "isArea": true,
+       "scale": 40
+      },
+      {
+       "pref": "静岡県",
+       "addr": "静岡県西部",
+       "isArea": true,
+       "scale": 30
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": null,
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S3-12",
+   "note": "ScalePrompt だけ（DetailScale なし）なので警告が出る。区域名『東京都２３区』で5強だが、特別区とは判定しない（区名で始まらない）ので general、qualifyingPrefCount は0。震央地名も空なので警告が出る。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/19 18:20:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/19 18:21:40",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "東京都２３区",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "東京都",
+       "addr": "東京都多摩東部",
+       "isArea": true,
+       "scale": 45
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "神奈川県東部",
+       "isArea": true,
+       "scale": 45
+      },
+      {
+       "pref": "千葉県",
+       "addr": "千葉県北西部",
+       "isArea": true,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S3-13",
+   "note": "ScalePrompt と Destination だけで DetailScale が無い。区域の点を使い、震度速報のみの警告が出る。Destination の maxScale=-1 は最大値をとるので影響しない。震央は Destination の千葉県北西部（陸域・千葉）。千葉の6弱で1県。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/20 02:02:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/20 02:03:20",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "千葉県",
+       "addr": "千葉県北西部",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "東京都",
+       "addr": "東京都２３区",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "埼玉県",
+       "addr": "埼玉県南部",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/20 02:02:00",
+      "hypocenter": {
+       "name": "千葉県北西部"
+      },
+      "maxScale": -1,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/20 02:06:00",
+      "type": "Destination"
+     },
+     "points": []
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "千葉",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S3-14",
+   "note": "同じ地震に ScalePrompt と DetailScale が混在する。DetailScale の観測点を使うので、名古屋中区県庁の5強で seirei となり愛知を1県数える。震度速報のみの警告は出ない。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/21 10:10:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/21 10:11:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "愛知県",
+       "addr": "愛知県西部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "三重県",
+       "addr": "三重県北部",
+       "isArea": true,
+       "scale": 45
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/21 10:10:00",
+      "hypocenter": {
+       "name": "愛知県西部"
+      },
+      "maxScale": -1,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/21 10:13:00",
+      "type": "Destination"
+     },
+     "points": []
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/21 10:10:00",
+      "hypocenter": {
+       "name": "愛知県西部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/21 10:20:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "愛知県",
+       "addr": "名古屋中区県庁",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "愛知県",
+       "addr": "津島市埋田町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "愛知県",
+       "addr": "一宮市本町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "三重県",
+       "addr": "桑名市中央町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S3-15",
+   "note": "DetailScale が2通あり、配列は新しい順（APIの並び）。発表時刻が新しい 08:25 のほうを使う。新しい版にだけある静岡葵区追手町の5強で seirei となり、静岡を1県数える（古い版を使うと general・0になる）。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/22 08:08:00",
+      "hypocenter": {
+       "name": "静岡県中部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/22 08:25:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "静岡県",
+       "addr": "富士宮市弓沢町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "静岡県",
+       "addr": "静岡葵区追手町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "静岡県",
+       "addr": "富士市本市場",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "山梨県",
+       "addr": "南部町福士",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/22 08:08:00",
+      "hypocenter": {
+       "name": "静岡県中部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/22 08:15:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "静岡県",
+       "addr": "富士宮市弓沢町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "静岡県",
+       "addr": "富士市本市場",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/22 08:08:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/22 08:09:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "静岡県",
+       "addr": "静岡県中部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "静岡県",
+       "addr": "静岡県東部",
+       "isArea": true,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S3-16",
+   "note": "DetailScale が2通あり、配列は古い順。新しい 20:20 の版（訂正で横浜中区が4に下がった）だけを使う。最大震度の点は横須賀市（一般）で general、0県。古い版を使ったり2通を合わせたりすると seirei・1になってしまう。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/23 19:45:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/23 19:46:20",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "神奈川県",
+       "addr": "神奈川県東部",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/23 19:45:00",
+      "hypocenter": {
+       "name": "神奈川県東部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/23 19:55:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "神奈川県",
+       "addr": "横浜中区山手町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "横須賀市光の丘",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "三浦市城山町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/23 19:45:00",
+      "hypocenter": {
+       "name": "神奈川県東部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/23 20:20:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "神奈川県",
+       "addr": "横浜中区山手町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "横須賀市光の丘",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "三浦市城山町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "東京都",
+       "addr": "大田区本羽田",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "神奈川",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S3-17",
+   "note": "scale=46（5弱以上と推定・未入電）の観測点があるので警告が出る。46の点は数えない。上越市三和区井ノ口（新潟県）は政令市ではないので5強でも数えない。数えるのは石川（6強）の1県。津波注意報だけなので tsunamiPrefs は空。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/24 16:10:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 60,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/24 16:11:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "石川県",
+       "addr": "石川県能登",
+       "isArea": true,
+       "scale": 60
+      },
+      {
+       "pref": "富山県",
+       "addr": "富山県西部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "新潟県",
+       "addr": "新潟県上越",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/24 16:10:00",
+      "hypocenter": {
+       "name": "石川県能登地方"
+      },
+      "maxScale": 60,
+      "domesticTsunami": "Watch"
+     },
+     "issue": {
+      "time": "2026/11/24 16:25:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "石川県",
+       "addr": "輪島市鳳至町",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "石川県",
+       "addr": "珠洲市正院町",
+       "isArea": false,
+       "scale": 46
+      },
+      {
+       "pref": "富山県",
+       "addr": "氷見市加納",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "新潟県",
+       "addr": "上越市三和区井ノ口",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "新潟県",
+       "addr": "新潟中央区関屋",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/24 16:14:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "Watch",
+       "name": "石川県能登",
+       "immediate": false
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S3-18",
+   "note": "maxScale は45で、scale=46 の点が1つある。maxShindo は『5弱以下』、46の点は数えないので0県、警告が出る。最大震度の点（scale=45）は輪島市で general。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/25 04:44:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 45,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/25 04:45:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "石川県",
+       "addr": "石川県能登",
+       "isArea": true,
+       "scale": 45
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/25 04:44:00",
+      "hypocenter": {
+       "name": "石川県能登地方"
+      },
+      "maxScale": 45,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/25 04:55:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "石川県",
+       "addr": "珠洲市正院町",
+       "isArea": false,
+       "scale": 46
+      },
+      {
+       "pref": "石川県",
+       "addr": "輪島市鳳至町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "石川県",
+       "addr": "能登町宇出津",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S3-19",
+   "note": "大津波警報が青森・岩手・北海道の4予報区に出て、北海道の重複を除く。最大震度6弱の点が青森1点・岩手1点の同数なので、五十音順で青森を先頭にし、『要確認: 岩手』の警告が出る（points は岩手が先に並ぶ）。久慈市川崎町は政令市の川崎ではない。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/26 12:34:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/26 12:35:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "岩手県",
+       "addr": "岩手県沿岸北部",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "青森県",
+       "addr": "青森県三八上北",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "北海道",
+       "addr": "渡島地方東部",
+       "isArea": true,
+       "scale": 40
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/26 12:34:00",
+      "hypocenter": {
+       "name": "三陸沖"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/26 12:48:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "岩手県",
+       "addr": "宮古市五月町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "青森県",
+       "addr": "八戸市内丸",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "岩手県",
+       "addr": "久慈市川崎町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "北海道",
+       "addr": "函館市美原",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/26 12:38:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "青森県太平洋沿岸",
+       "immediate": true
+      },
+      {
+       "grade": "MajorWarning",
+       "name": "岩手県",
+       "immediate": true
+      },
+      {
+       "grade": "MajorWarning",
+       "name": "北海道太平洋沿岸中部",
+       "immediate": false
+      },
+      {
+       "grade": "MajorWarning",
+       "name": "北海道太平洋沿岸東部",
+       "immediate": false
+      },
+      {
+       "grade": "Warning",
+       "name": "宮城県",
+       "immediate": false
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "青森",
+    "tsunamiPrefs": [
+     "青森",
+     "岩手",
+     "北海道"
+    ],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S3-20",
+   "note": "大津波警報が京都府（表の末尾にある予報区）で京都を入れる。福井県と兵庫県北部は津波警報なので入れない。震央は若狭湾（海域）。最大震度の点は京都府の2点だけなので警告は出ない。京都上京区は4なので place には関係しない。 【期待値訂正: 注釈と矛盾していたため hasWarning=false】",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/27 06:06:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/27 06:07:20",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "京都府",
+       "addr": "京都府北部",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "福井県",
+       "addr": "福井県嶺南",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/27 06:06:00",
+      "hypocenter": {
+       "name": "若狭湾"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/27 06:18:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "京都府",
+       "addr": "舞鶴市北吸",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "京都府",
+       "addr": "京丹後市峰山町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "福井県",
+       "addr": "高浜町和田",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "京都府",
+       "addr": "京都上京区薮ノ内町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/27 06:10:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "京都府",
+       "immediate": true
+      },
+      {
+       "grade": "Warning",
+       "name": "福井県",
+       "immediate": true
+      },
+      {
+       "grade": "Warning",
+       "name": "兵庫県北部",
+       "immediate": false
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "京都",
+    "tsunamiPrefs": [
+     "京都"
+    ],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S3-21",
+   "note": "DetailScale が無く ScalePrompt が2通ある（配列は古い順）。発表時刻が新しい 23:03 の ScalePrompt の点を使い、愛知県西部の6弱で1県。震度速報のみの警告と、震央地名が空の警告が出る。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/28 23:00:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/28 23:01:30",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "愛知県",
+       "addr": "愛知県西部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "岐阜県",
+       "addr": "岐阜県美濃中西部",
+       "isArea": true,
+       "scale": 45
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/28 23:00:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/28 23:03:00",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "愛知県",
+       "addr": "愛知県西部",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "岐阜県",
+       "addr": "岐阜県美濃中西部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "三重県",
+       "addr": "三重県北部",
+       "isArea": true,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S3-22",
+   "note": "大津波警報が伊豆諸島と小笠原諸島で、どちらも東京なので重複を除いて東京1つにする。最大震度4で『5弱以下』、0県。震央の鳥島近海は海域で、最大震度の点は東京都だけ。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/29 15:50:00",
+      "hypocenter": {
+       "name": "鳥島近海"
+      },
+      "maxScale": 40,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/29 15:53:00",
+      "type": "ScaleAndDestination"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "伊豆諸島南部",
+       "isArea": true,
+       "scale": 40
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/29 15:50:00",
+      "hypocenter": {
+       "name": "鳥島近海"
+      },
+      "maxScale": 40,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/11/29 16:00:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "八丈町三根",
+       "isArea": false,
+       "scale": 40
+      },
+      {
+       "pref": "東京都",
+       "addr": "青ヶ島村無番地",
+       "isArea": false,
+       "scale": 30
+      },
+      {
+       "pref": "東京都",
+       "addr": "小笠原村父島三日月山",
+       "isArea": false,
+       "scale": 20
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/11/29 15:56:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "伊豆諸島",
+       "immediate": true
+      },
+      {
+       "grade": "MajorWarning",
+       "name": "小笠原諸島",
+       "immediate": false
+      },
+      {
+       "grade": "Warning",
+       "name": "千葉県九十九里・外房",
+       "immediate": false
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "東京",
+    "tsunamiPrefs": [
+     "東京"
+    ],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-01",
+   "note": "陸域「熊本県熊本地方」。震度速報（震央地名が空）の後に DetailScale が来る。震央地名は空でない最新のものを使い、県名の前方一致で熊本とする。最大震度60の点に熊本中央区（政令市）があるので seirei。陸域なので maxShindoPref は null。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/04/14 21:26:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 60,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/04/14 21:28:00",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "熊本県",
+       "addr": "熊本県熊本",
+       "isArea": true,
+       "scale": 60
+      },
+      {
+       "pref": "熊本県",
+       "addr": "熊本県阿蘇",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/04/14 21:26:00",
+      "hypocenter": {
+       "name": "熊本県熊本地方"
+      },
+      "maxScale": 60,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/04/14 21:35:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "熊本県",
+       "addr": "熊本中央区大江",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "熊本県",
+       "addr": "宇城市松橋町",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "熊本県",
+       "addr": "熊本東区佐土原",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "熊本県",
+       "addr": "阿蘇市一の宮町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "大分県",
+       "addr": "竹田市会々",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "熊本",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-02",
+   "note": "陸域「愛知県東部」で、震央管轄は愛知。最大震度の点は豊橋（一般市）なので general。最大でない政令市の点（浜松・名古屋の30）は観測場所の判定に影響しない。5強の点は一般市だけなので該当県の数は0。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/08 01:04:00",
+      "hypocenter": {
+       "name": "愛知県東部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/08 01:10:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "愛知県",
+       "addr": "豊橋市今橋町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "愛知県",
+       "addr": "新城市東入船",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "愛知県",
+       "addr": "豊川市諏訪",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "愛知県",
+       "addr": "名古屋中区三の丸",
+       "isArea": false,
+       "scale": 30
+      },
+      {
+       "pref": "静岡県",
+       "addr": "浜松中央区三組町",
+       "isArea": false,
+       "scale": 30
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-03",
+   "note": "陸域「渡島地方東部」。北海道の地方名＋「地方」なので北海道とする。「島」は海域の語に当たらない。maxScale 45 は「5弱以下」。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/06/02 14:20:00",
+      "hypocenter": {
+       "name": "渡島地方東部"
+      },
+      "maxScale": 45,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/06/02 14:26:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "北海道",
+       "addr": "函館市泊町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "北海道",
+       "addr": "北斗市中央",
+       "isArea": false,
+       "scale": 40
+      },
+      {
+       "pref": "北海道",
+       "addr": "七飯町本町",
+       "isArea": false,
+       "scale": 40
+      },
+      {
+       "pref": "青森県",
+       "addr": "むつ市金曲",
+       "isArea": false,
+       "scale": 20
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "北海道",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-04",
+   "note": "陸域「淡路島付近」は兵庫とする。最大震度60の点は淡路市だけなので general（神戸中央区は55なので観測場所の判定には使わない）。該当県は兵庫の1。大阪は45なので数えない。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/01/17 05:46:00",
+      "hypocenter": {
+       "name": "淡路島付近"
+      },
+      "maxScale": 60,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/01/17 05:55:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "兵庫県",
+       "addr": "淡路市志筑",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "兵庫県",
+       "addr": "神戸中央区中山手",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "兵庫県",
+       "addr": "洲本市小路谷",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "大阪府",
+       "addr": "大阪北区茶屋町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "徳島県",
+       "addr": "鳴門市撫養町",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "兵庫",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-05",
+   "note": "海域「和歌山県南方沖」は「沖」を含むので海域。県名で始まっていても epicenterPref には入れず null。最大震度の点は和歌山の1県だけ。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/03/10 09:12:00",
+      "hypocenter": {
+       "name": "和歌山県南方沖"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/03/10 09:18:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "和歌山県",
+       "addr": "新宮市春日",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "和歌山県",
+       "addr": "串本町潮岬",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "三重県",
+       "addr": "熊野市井戸町",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "和歌山",
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-06",
+   "note": "海域「相模湾」（「湾」）。最大震度55は小田原だけなので神奈川、general。神奈川は6弱があるので数え、横浜中区50（政令市5強）があっても同じ県なので該当県は1。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/09/01 11:58:00",
+      "hypocenter": {
+       "name": "相模湾"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/09/01 12:05:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "神奈川県",
+       "addr": "小田原市荻窪",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "横浜中区山手町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "平塚市浅間町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "静岡県",
+       "addr": "熱海市網代",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "東京都",
+       "addr": "千代田区大手町",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "神奈川",
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-07",
+   "note": "海域「伊豆大島近海」（「近海」）。最大震度の点は東京都大島町。東京都内でも23区ではないので general。maxShindoPref は東京。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/05/21 22:40:00",
+      "hypocenter": {
+       "name": "伊豆大島近海"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/05/21 22:47:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "大島町元町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "東京都",
+       "addr": "大島町差木地",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "静岡県",
+       "addr": "伊東市大原",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "静岡県",
+       "addr": "東伊豆町奈良本",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "東京",
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-08",
+   "note": "海域「北海道南西沖」。「北海道」を除いた「南西沖」に「沖」があるので海域。最大震度は北海道。津波予報の最新が cancelled=false で、MajorWarning の予報区（北海道日本海沿岸南部）だけを北海道として入れる。Warning・Watch は入れない。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/07/12 22:17:00",
+      "hypocenter": {
+       "name": "北海道南西沖"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Warning"
+     },
+     "issue": {
+      "time": "2026/07/12 22:25:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "北海道",
+       "addr": "奥尻町奥尻",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "北海道",
+       "addr": "江差町中歌町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "北海道",
+       "addr": "函館市泊町",
+       "isArea": false,
+       "scale": 40
+      },
+      {
+       "pref": "青森県",
+       "addr": "深浦町深浦",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [
+    {
+     "code": 552,
+     "cancelled": false,
+     "issue": {
+      "time": "2026/07/12 22:22:00",
+      "type": "Focus"
+     },
+     "areas": [
+      {
+       "grade": "MajorWarning",
+       "name": "北海道日本海沿岸南部",
+       "immediate": true
+      },
+      {
+       "grade": "Warning",
+       "name": "青森県日本海沿岸",
+       "immediate": false
+      },
+      {
+       "grade": "Watch",
+       "name": "北海道日本海沿岸北部",
+       "immediate": false
+      }
+     ]
+    }
+   ],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "北海道",
+    "tsunamiPrefs": [
+     "北海道"
+    ],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-09",
+   "note": "海域「日本海中部」（「海」を含む）。最大震度50の点は秋田の1点だけ。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/05/26 12:00:00",
+      "hypocenter": {
+       "name": "日本海中部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/05/26 12:08:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "秋田県",
+       "addr": "能代市上町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "秋田県",
+       "addr": "男鹿市船川",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "青森県",
+       "addr": "深浦町深浦",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "山形県",
+       "addr": "酒田市亀ケ崎",
+       "isArea": false,
+       "scale": 30
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "秋田",
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-10",
+   "note": "海域「遠州灘」（「灘」）。最大震度55の点は浜松中央区（静岡県の政令市）なので seirei。maxShindoPref は静岡、該当県は静岡の1。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/10/03 03:15:00",
+      "hypocenter": {
+       "name": "遠州灘"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/10/03 03:22:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "静岡県",
+       "addr": "浜松中央区三組町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "静岡県",
+       "addr": "磐田市国府台",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "愛知県",
+       "addr": "豊橋市今橋町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "愛知県",
+       "addr": "名古屋中区三の丸",
+       "isArea": false,
+       "scale": 30
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "静岡",
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-11",
+   "note": "海域「福島県沖」。最大震度60の点は福島だけ。宮城は仙台青葉区（政令市）の5強で該当するので、該当県は福島と宮城の2。南相馬市原町区は「区」を含むが政令市の短縮名で始まらないので一般市。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/02/13 23:07:00",
+      "hypocenter": {
+       "name": "福島県沖"
+      },
+      "maxScale": 60,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/02/13 23:15:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "福島県",
+       "addr": "相馬市中村",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "福島県",
+       "addr": "南相馬市原町区本町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "宮城県",
+       "addr": "仙台青葉区大倉",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "茨城県",
+       "addr": "日立市助川小学校",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "福島",
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-12",
+   "note": "DetailScale はあるが、どのレコードも震央地名が空。不明として警告し、epicenterSea は false のまま、epicenterPref・maxShindoPref は null。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/08/20 16:30:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 45,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/08/20 16:38:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "愛知県",
+       "addr": "豊橋市今橋町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "愛知県",
+       "addr": "岡崎市十王町",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S2-13",
+   "note": "震度速報のみ。震央地名は空で、DetailScale もない。区域名の点を使い、震度速報のみの警告と震央不明の警告を出す。区域名「愛知県西部」は政令市・特別区に当たらないので general、該当県は0。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/12/01 07:41:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/12/01 07:43:00",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "愛知県",
+       "addr": "愛知県西部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "愛知県",
+       "addr": "愛知県東部",
+       "isArea": true,
+       "scale": 45
+      },
+      {
+       "pref": "岐阜県",
+       "addr": "岐阜県美濃中西部",
+       "isArea": true,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S2-14",
+   "note": "震央地名の訂正。Destination（01:06）は「茨城県沖」、DetailScale（01:10）は「茨城県南部」。issue.time が最新の空でない名前（茨城県南部）を使うので陸域・茨城。配列の順は発表順ではない（最新が先頭）。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/20 01:03:00",
+      "hypocenter": {
+       "name": "茨城県南部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/20 01:10:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "茨城県",
+       "addr": "つくば市天王台",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "茨城県",
+       "addr": "土浦市常名",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "茨城県",
+       "addr": "水戸市金町",
+       "isArea": false,
+       "scale": 40
+      },
+      {
+       "pref": "千葉県",
+       "addr": "野田市鶴奉",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/20 01:03:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/20 01:05:00",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "茨城県",
+       "addr": "茨城県南部",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/20 01:03:00",
+      "hypocenter": {
+       "name": "茨城県沖"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/20 01:06:00",
+      "type": "Destination"
+     },
+     "points": []
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "茨城",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-15",
+   "note": "海域「伊豆半島東方沖」。最大震度50の点が神奈川1点・静岡1点で同数。五十音順の先頭（かながわ＜しずおか）で神奈川を入れ、静岡を要確認として警告する。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/04/30 18:22:00",
+      "hypocenter": {
+       "name": "伊豆半島東方沖"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/04/30 18:29:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "静岡県",
+       "addr": "伊東市大原",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "箱根町湯本",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "静岡県",
+       "addr": "熱海市網代",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "小田原市荻窪",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "神奈川",
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S2-16",
+   "note": "海域「福島県沖」。最大震度60の点が宮城2点・福島1点で同数でない。点の多い宮城を入れる（震央地名の県や五十音順ではない）。福島は警告。宮城県川崎町は川崎市ではない。該当県は福島・宮城の2。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/03/16 23:36:00",
+      "hypocenter": {
+       "name": "福島県沖"
+      },
+      "maxScale": 60,
+      "domesticTsunami": "Watch"
+     },
+     "issue": {
+      "time": "2026/03/16 23:45:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "福島県",
+       "addr": "相馬市中村",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "宮城県",
+       "addr": "蔵王町円田",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "宮城県",
+       "addr": "登米市迫町佐沼",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "福島県",
+       "addr": "南相馬市原町区本町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "宮城県",
+       "addr": "仙台宮城野区苦竹",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "宮城県",
+       "addr": "川崎町前川",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "岩手県",
+       "addr": "一関市大東町",
+       "isArea": false,
+       "scale": 50
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S2-17",
+   "note": "海域「紀伊水道」（「水道」）。最大震度55の点が和歌山1点・徳島1点で同数。五十音順（とくしま＜わかやま）で徳島を入れる。県番号順や文字コード順なら和歌山になるので、その誤りを見分けられる。該当県は和歌山・徳島の2。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/06/18 10:05:00",
+      "hypocenter": {
+       "name": "紀伊水道"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/06/18 10:12:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "和歌山県",
+       "addr": "和歌山市一番丁",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "徳島県",
+       "addr": "徳島市大和町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "和歌山県",
+       "addr": "有田市箕島",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "兵庫県",
+       "addr": "南あわじ市湊",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "大阪府",
+       "addr": "堺堺区南瓦町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "徳島",
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S2-18",
+   "note": "海域「千葉県東方沖」。最大震度45の点が茨城・千葉・東京に1点ずつ。五十音順（いばらき＜ちば＜とうきょう）で茨城を入れる。最大震度の点に千代田区（特別区）があるので tokyo23。震度は5弱以下なので該当県は0。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/02/26 04:28:00",
+      "hypocenter": {
+       "name": "千葉県東方沖"
+      },
+      "maxScale": 45,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/02/26 04:35:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "千葉県",
+       "addr": "銚子市若宮町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "東京都",
+       "addr": "千代田区大手町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "茨城県",
+       "addr": "鉾田市当間",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "千葉県",
+       "addr": "旭市南堀之内",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "茨城",
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S2-19",
+   "note": "海域「日向灘」。最大震度55は宮崎の1点だけ（ほかの点は多い）。熊本中央区50（政令市5強）で熊本も該当するので、該当県は宮崎・熊本の2。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/08/08 16:42:00",
+      "hypocenter": {
+       "name": "日向灘"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Watch"
+     },
+     "issue": {
+      "time": "2026/08/08 16:50:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "宮崎県",
+       "addr": "日南市中央通",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "宮崎県",
+       "addr": "宮崎市松橋",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "大分県",
+       "addr": "佐伯市蒲江",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "熊本県",
+       "addr": "熊本中央区大江",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "鹿児島県",
+       "addr": "志布志市志布志町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮崎",
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-20",
+   "note": "海域「三陸沖」。観測点が全部で1点だけ（岩手、震度3）。その県が maxShindoPref になり、警告はない。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/10/22 06:14:00",
+      "hypocenter": {
+       "name": "三陸沖"
+      },
+      "maxScale": 30,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/10/22 06:19:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "岩手県",
+       "addr": "大船渡市大船渡町",
+       "isArea": false,
+       "scale": 30
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "岩手",
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-21",
+   "note": "陸域「胆振地方中東部」は北海道の地方名＋「地方」で始まるので北海道。最大震度70は厚真町だけなので general（札幌東区60は最大ではない）。該当県は北海道の1。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/09/06 03:07:00",
+      "hypocenter": {
+       "name": "胆振地方中東部"
+      },
+      "maxScale": 70,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/09/06 03:20:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "北海道",
+       "addr": "厚真町鹿沼",
+       "isArea": false,
+       "scale": 70
+      },
+      {
+       "pref": "北海道",
+       "addr": "安平町早来北進",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "北海道",
+       "addr": "札幌東区元町",
+       "isArea": false,
+       "scale": 60
+      },
+      {
+       "pref": "北海道",
+       "addr": "千歳市北栄",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "青森県",
+       "addr": "八戸市内丸",
+       "isArea": false,
+       "scale": 30
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "北海道",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-22",
+   "note": "陸域「国後島付近」。海域の語を含まず、都道府県名でも北海道の地方名でも「淡路島付近」でも始まらない。震央管轄都道府県を判定できないので null にして警告する（仕様の表にない名前を推測で埋めない）。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/07/30 20:11:00",
+      "hypocenter": {
+       "name": "国後島付近"
+      },
+      "maxScale": 30,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/07/30 20:17:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "北海道",
+       "addr": "根室市納沙布",
+       "isArea": false,
+       "scale": 30
+      },
+      {
+       "pref": "北海道",
+       "addr": "別海町常盤",
+       "isArea": false,
+       "scale": 20
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S2-23",
+   "note": "陸域「大阪府北部」で、「府」を除いて大阪。最大震度55の点に大阪北区（政令市）があるので seirei。京都伏見区50（政令市5強）で京都も該当するので、該当県は大阪・京都の2。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/06/18 07:58:00",
+      "hypocenter": {
+       "name": "大阪府北部"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/06/18 08:06:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "大阪府",
+       "addr": "高槻市桃園町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "大阪府",
+       "addr": "大阪北区茶屋町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "大阪府",
+       "addr": "枚方市大垣内",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "京都府",
+       "addr": "京都伏見区醍醐",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "兵庫県",
+       "addr": "尼崎市昭和通",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-24",
+   "note": "陸域「東京都２３区」で、「都」を除いて東京。最大震度50の点は千代田区（特別区）なので tokyo23、該当県は東京の1。川崎川崎区45は政令市だが最大震度ではなく5強未満。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/10/07 22:41:00",
+      "hypocenter": {
+       "name": "東京都２３区"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/10/07 22:48:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "千代田区大手町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "東京都",
+       "addr": "江東区越中島",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "川崎川崎区宮前町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S2-25",
+   "note": "陸域「新潟県上越地方」で新潟。最大震度50の点「上越市三和区井ノ口」は「区」を含むが上越市なので政令市ではなく general、該当県は0。新潟中央区30は政令市だが最大ではない。",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/12/14 13:33:00",
+      "hypocenter": {
+       "name": "新潟県上越地方"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/12/14 13:40:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "新潟県",
+       "addr": "上越市三和区井ノ口",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "新潟県",
+       "addr": "上越市大手町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "新潟県",
+       "addr": "新潟中央区美咲町",
+       "isArea": false,
+       "scale": 30
+      },
+      {
+       "pref": "長野県",
+       "addr": "飯山市飯山",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "新潟",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-01",
+   "note": "名古屋の区（名古屋中区県庁）だけが5強。最大震度の観測点が政令市なので seirei、愛知が該当県で1。一宮市などの一般の市は5弱。陸域の地震なので maxShindoPref は null（海域のときだけ入れる。以下同じ）",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/08 01:04:00",
+      "hypocenter": {
+       "name": "愛知県西部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/08 01:10:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "愛知県",
+       "addr": "名古屋中区県庁",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "愛知県",
+       "addr": "名古屋熱田区神宮",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "愛知県",
+       "addr": "一宮市本町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "岐阜県",
+       "addr": "岐阜市加納",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-02",
+   "note": "浜松の区（浜松中央区三組町）だけが5強。浜松市は静岡県に属するので政令市として扱い、seirei、該当県は1",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/10 07:21:00",
+      "hypocenter": {
+       "name": "静岡県西部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/10 07:27:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "静岡県",
+       "addr": "浜松中央区三組町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "静岡県",
+       "addr": "浜松浜名区西美薗",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "静岡県",
+       "addr": "磐田市国府台",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "静岡県",
+       "addr": "湖西市新居町",
+       "isArea": false,
+       "scale": 40
+      },
+      {
+       "pref": "愛知県",
+       "addr": "豊橋市向山町",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-03",
+   "note": "京都の区（京都上京区薮ノ内町）が5強。震度速報、DetailScale（第1報、京都上京区を含まない）、DetailScale（第2報）の3件がある。観測点は最新の DetailScale だけを使う。maxScale は全情報の最大値で50。DetailScale があるので震度速報の警告は出ない",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/09 14:32:00",
+      "hypocenter": {
+       "name": "京都府南部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/09 14:45:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "京都府",
+       "addr": "京都上京区薮ノ内町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "京都府",
+       "addr": "京都伏見区醍醐",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "京都府",
+       "addr": "宇治市宇治琵琶",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "滋賀県",
+       "addr": "大津市御陵町",
+       "isArea": false,
+       "scale": 40
+      },
+      {
+       "pref": "大阪府",
+       "addr": "高槻市桃園町",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/09 14:32:00",
+      "hypocenter": {
+       "name": "京都府南部"
+      },
+      "maxScale": 45,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/09 14:38:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "京都府",
+       "addr": "京都伏見区醍醐",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "京都府",
+       "addr": "宇治市宇治琵琶",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/09 14:32:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 50,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/11/09 14:34:00",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "京都府",
+       "addr": "京都府南部",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "京都",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-04",
+   "note": "堺の区（堺堺区南瓦町）だけが5強。短縮名「堺」に区名「堺区」が続く形を政令市として扱う。大阪中央区大手前は「中央区」を含むが、大阪府の観測点で4なので特別区にも最大震度の点にも当たらない",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/11 22:15:00",
+      "hypocenter": {
+       "name": "大阪府南部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/11 22:21:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "大阪府",
+       "addr": "堺堺区南瓦町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "大阪府",
+       "addr": "堺中区深井清水町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "大阪府",
+       "addr": "和泉市府中町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "大阪府",
+       "addr": "大阪中央区大手前",
+       "isArea": false,
+       "scale": 40
+      },
+      {
+       "pref": "奈良県",
+       "addr": "奈良市二条大路南",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-05",
+   "note": "さいたまの区（さいたま大宮区大門、ひらがなの短縮名）だけが5強で seirei。東京都足立区の点（特別区）は4で最大震度の点ではないので、tokyo23 にしない",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/12 03:48:00",
+      "hypocenter": {
+       "name": "埼玉県南部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/12 03:54:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "埼玉県",
+       "addr": "さいたま大宮区大門",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "埼玉県",
+       "addr": "さいたま浦和区高砂",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "埼玉県",
+       "addr": "川口市青木",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "東京都",
+       "addr": "足立区神明南",
+       "isArea": false,
+       "scale": 40
+      },
+      {
+       "pref": "千葉県",
+       "addr": "野田市鶴奉",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "埼玉",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-06",
+   "note": "北九州の区（北九州小倉北区大手町）だけが5強で seirei。北九州も福岡も福岡県の政令市。福岡中央区舞鶴は4",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/13 16:02:00",
+      "hypocenter": {
+       "name": "福岡県北九州地方"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/13 16:08:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "福岡県",
+       "addr": "北九州小倉北区大手町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "福岡県",
+       "addr": "北九州八幡西区黒崎",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "福岡県",
+       "addr": "行橋市中央",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "福岡県",
+       "addr": "福岡中央区舞鶴",
+       "isArea": false,
+       "scale": 40
+      },
+      {
+       "pref": "山口県",
+       "addr": "下関市竹崎町",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "福岡",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-07",
+   "note": "6弱は特別区（千代田区大手町）にだけある。tokyo23。東京が該当（6弱）。埼玉の川口市・千葉の浦安市・東京の調布市の5強は一般の市なので数えない。神奈川の川崎の区は5弱なので数えない。該当県は1",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/14 10:30:00",
+      "hypocenter": {
+       "name": "東京都２３区"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/14 10:37:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "千代田区大手町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "東京都",
+       "addr": "中央区勝どき",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "東京都",
+       "addr": "調布市西つつじケ丘",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "埼玉県",
+       "addr": "川口市青木",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "千葉県",
+       "addr": "浦安市猫実",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "川崎川崎区宮前町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-08",
+   "note": "5強が特別区（北区、江戸川区）と千葉の一般の市（市川市）にある。最大震度の点に特別区の点があるので tokyo23（seirei/general より優先）。東京だけが該当。千葉は5強が一般の市だけで、千葉中央区は5弱なので数えない。該当県は1",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/15 05:12:00",
+      "hypocenter": {
+       "name": "千葉県北西部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/15 05:18:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "北区赤羽南",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "東京都",
+       "addr": "江戸川区中央",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "千葉県",
+       "addr": "市川市八幡",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "千葉県",
+       "addr": "千葉中央区中央港",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "埼玉県",
+       "addr": "川口市青木",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "千葉",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-09",
+   "note": "宮城県川崎町（川崎町前川）が5強。「川崎」で始まるが区名が続かず、県も神奈川でないので政令市ではない。general、該当県は0。仙台の区は5弱",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/16 19:44:00",
+      "hypocenter": {
+       "name": "宮城県南部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/16 19:50:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "宮城県",
+       "addr": "川崎町前川",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "宮城県",
+       "addr": "仙台太白区山田",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "宮城県",
+       "addr": "村田町村田",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "宮城県",
+       "addr": "白石市亘理町",
+       "isArea": false,
+       "scale": 40
+      },
+      {
+       "pref": "山形県",
+       "addr": "上山市河崎",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "宮城",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-10",
+   "note": "福岡県川崎町（川崎町田原）が5強。県も神奈川でなく区名もないので一般の町。北九州の区は5弱で最大震度の点でないので seirei にしない。general、該当県は0",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/17 08:09:00",
+      "hypocenter": {
+       "name": "福岡県筑豊地方"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/17 08:15:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "福岡県",
+       "addr": "川崎町田原",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "福岡県",
+       "addr": "田川市中央町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "福岡県",
+       "addr": "北九州小倉南区若園",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "福岡県",
+       "addr": "飯塚市新立岩",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "福岡",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-11",
+   "note": "上越市の区（上越市三和区井ノ口）が5強。新潟県の観測点で「〜区」を含むが、政令市の短縮名「新潟」で始まらないので一般の市。general、該当県は0",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/18 12:27:00",
+      "hypocenter": {
+       "name": "新潟県上越地方"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/18 12:33:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "新潟県",
+       "addr": "上越市三和区井ノ口",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "新潟県",
+       "addr": "上越市木田",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "新潟県",
+       "addr": "妙高市栄町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "長野県",
+       "addr": "飯山市飯山",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "新潟",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-12",
+   "note": "6弱は上越市柿崎区と長岡市（どちらも一般の市）。新潟の区（新潟秋葉区）は5強。最大震度の点は一般なので general。新潟県は6弱と政令市5強の両方で該当するが、1県として1回だけ数える。該当県は1",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/19 17:56:00",
+      "hypocenter": {
+       "name": "新潟県中越地方"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/19 18:03:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "新潟県",
+       "addr": "上越市柿崎区柿崎",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "新潟県",
+       "addr": "長岡市幸町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "新潟県",
+       "addr": "新潟秋葉区程島",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "新潟県",
+       "addr": "新潟中央区関屋",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "長野県",
+       "addr": "長野市箱清水",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "群馬県",
+       "addr": "みなかみ町後閑",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "新潟",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-13",
+   "note": "千葉県以外の「千葉」始まり。合成データ（実在しない組合せ）で、茨城県の観測点「千葉若葉区千城台」が5強。短縮名と区名の形でも、県が千葉でないので政令市にしない。general、該当県は0。千葉県の千葉中央区は5弱",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/20 23:40:00",
+      "hypocenter": {
+       "name": "茨城県南部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/20 23:46:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "茨城県",
+       "addr": "千葉若葉区千城台",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "茨城県",
+       "addr": "土浦市常名",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "千葉県",
+       "addr": "千葉中央区中央港",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "千葉県",
+       "addr": "柏市旭町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "茨城",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-14",
+   "note": "堺市以外の「堺」始まり。合成データ（実在しない組合せ）で、和歌山県の観測点「堺北区百舌鳥梅町」が5強。県が大阪でないので政令市にしない。general、該当県は0。大阪府の堺南区は5弱",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/21 06:33:00",
+      "hypocenter": {
+       "name": "和歌山県北部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/21 06:39:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "和歌山県",
+       "addr": "堺北区百舌鳥梅町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "和歌山県",
+       "addr": "和歌山市一番丁",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "大阪府",
+       "addr": "堺南区桃山台",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "大阪府",
+       "addr": "岸和田市岸城町",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "和歌山",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-15",
+   "note": "大阪狭山市（大阪狭山市狭山）が5強。短縮名「大阪」で始まり県も大阪だが、続く部分に区名がないので政令市ではない。富田林市も5強。general、該当県は0",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/22 13:05:00",
+      "hypocenter": {
+       "name": "大阪府南部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/22 13:11:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "大阪府",
+       "addr": "大阪狭山市狭山",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "大阪府",
+       "addr": "富田林市常盤町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "大阪府",
+       "addr": "堺美原区黒山",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "大阪府",
+       "addr": "大阪平野区平野南",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "奈良県",
+       "addr": "香芝市本町",
+       "isArea": false,
+       "scale": 40
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-16",
+   "note": "5強が一般の町・市にだけ、2県にある（岐阜県神戸町、大垣市、愛知県愛西市）。神戸町神戸は「神戸」で始まるが、県が兵庫でなく区名もない。general、該当県は0（5強の一般の点は数えない）",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/23 04:18:00",
+      "hypocenter": {
+       "name": "岐阜県美濃中西部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/23 04:24:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "岐阜県",
+       "addr": "神戸町神戸",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "岐阜県",
+       "addr": "大垣市丸の内",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "愛知県",
+       "addr": "愛西市稲葉町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "愛知県",
+       "addr": "名古屋中村区名駅",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "三重県",
+       "addr": "桑名市中央町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "岐阜",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-17",
+   "note": "5強が政令市（相模原緑区中野）と一般の市（小田原市、山梨県上野原市）にある。最大震度の点に政令市の点があるので seirei。神奈川だけが該当（山梨は一般の市だけ）。該当県は1",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/24 20:51:00",
+      "hypocenter": {
+       "name": "神奈川県西部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/24 20:57:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "神奈川県",
+       "addr": "相模原緑区中野",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "小田原市荻窪",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "山梨県",
+       "addr": "上野原市上野原",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "静岡県",
+       "addr": "御殿場市萩原",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "東京都",
+       "addr": "八王子市大横町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "神奈川",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-18",
+   "note": "名古屋の港区（名古屋港区春田野）が5強。「港区」を含むが愛知県の観測点なので特別区ではなく政令市（seirei）。三重県桑名市の5強は一般の市なので数えない。該当県は愛知の1",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/25 09:37:00",
+      "hypocenter": {
+       "name": "三重県北部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/25 09:43:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "愛知県",
+       "addr": "名古屋港区春田野",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "三重県",
+       "addr": "桑名市長島町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "三重県",
+       "addr": "四日市市諏訪町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "愛知県",
+       "addr": "弥富市神戸",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "三重",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-19",
+   "note": "6弱が陸域の地震で3県（石川、富山、新潟）の一般の市にある。該当県は3。最大震度の点はすべて一般なので general。富山市・金沢市の5強は一般の市なので、県の数に影響しない",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/26 16:10:00",
+      "hypocenter": {
+       "name": "石川県能登地方"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/26 16:17:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "石川県",
+       "addr": "輪島市門前町走出",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "石川県",
+       "addr": "七尾市田鶴浜町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "富山県",
+       "addr": "氷見市加納",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "新潟県",
+       "addr": "長岡市幸町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "富山県",
+       "addr": "富山市新桜町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "石川県",
+       "addr": "金沢市弥生",
+       "isArea": false,
+       "scale": 50
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-20",
+   "note": "海域（茨城県沖）。6弱が茨城（2点）と福島（1点）にある。最大震度の点が多い茨城を maxShindoPref にし、福島を「最大震度が複数の都道府県で観測」と警告する。該当県は2。epicenterPref は null",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/27 02:44:00",
+      "hypocenter": {
+       "name": "茨城県沖"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/27 02:51:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "茨城県",
+       "addr": "日立市助川小学校",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "茨城県",
+       "addr": "高萩市本町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "福島県",
+       "addr": "いわき市錦町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "福島県",
+       "addr": "白河市新白河",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "栃木県",
+       "addr": "宇都宮市明保野町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "茨城",
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S1-21",
+   "note": "海域（岩手県沖）。6弱が岩手と宮城に1点ずつある。同数なので五十音順で先頭の岩手（いわて＜みやぎ）を maxShindoPref にし、警告を出す。仙台宮城野区の5強は政令市だが最大震度ではないので place は general。該当県は2",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/28 11:23:00",
+      "hypocenter": {
+       "name": "岩手県沖"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/28 11:30:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "岩手県",
+       "addr": "大船渡市猪川町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "宮城県",
+       "addr": "気仙沼市赤岩",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "宮城県",
+       "addr": "仙台宮城野区苦竹",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "岩手県",
+       "addr": "盛岡市山王町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "青森県",
+       "addr": "八戸市内丸",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "岩手",
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S1-22",
+   "note": "海域（東京湾）。6弱は特別区（千代田区）だけなので tokyo23、maxShindoPref は東京（1県だけなので警告なし）。神奈川は横浜・川崎の区の5強で該当、千葉は市川市（一般）の5強だけで該当しない。該当県は2",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/29 18:06:00",
+      "hypocenter": {
+       "name": "東京湾"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/29 18:13:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "千代田区大手町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "東京都",
+       "addr": "品川区北品川",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "横浜鶴見区末広町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "川崎川崎区宮前町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "千葉県",
+       "addr": "市川市八幡",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "千葉県",
+       "addr": "千葉中央区中央港",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "埼玉県",
+       "addr": "川口市青木",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 2,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "東京",
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-23",
+   "note": "東京都内でも特別区でない八王子市が6弱。東京都の点なので特別区と間違えないこと。最大震度の点は一般なので general。新宿区（特別区）は5強。東京は1県として数え、該当県は1。相模原の区は5弱",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/11/30 07:58:00",
+      "hypocenter": {
+       "name": "東京都多摩東部"
+      },
+      "maxScale": 55,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/11/30 08:05:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "八王子市大横町",
+       "isArea": false,
+       "scale": 55
+      },
+      {
+       "pref": "東京都",
+       "addr": "町田市中町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "東京都",
+       "addr": "新宿区西新宿",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "相模原中央区中央",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "山梨県",
+       "addr": "大月市御太刀",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": false
+   }
+  },
+  {
+   "id": "S1-24",
+   "note": "DetailScale がなく、震度速報（区域名）と震源に関する情報だけがある。区域名「東京都２３区」は特別区の区名で始まらないので general。東京は6弱で該当、他県の5強は区域名なので数えない。該当県は1。maxScale は全情報の最大値で55（Destination の -1 ではない）。震央地名は Destination から取る。「観測点の震度情報なし（震度速報のみ）」の警告が出る",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/12/01 21:14:00",
+      "hypocenter": {
+       "name": "東京都２３区"
+      },
+      "maxScale": -1,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/12/01 21:18:00",
+      "type": "Destination"
+     },
+     "points": []
+    },
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/12/01 21:14:00",
+      "hypocenter": {
+       "name": ""
+      },
+      "maxScale": 55,
+      "domesticTsunami": "Checking"
+     },
+     "issue": {
+      "time": "2026/12/01 21:16:00",
+      "type": "ScalePrompt"
+     },
+     "points": [
+      {
+       "pref": "東京都",
+       "addr": "東京都２３区",
+       "isArea": true,
+       "scale": 55
+      },
+      {
+       "pref": "神奈川県",
+       "addr": "神奈川県東部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "千葉県",
+       "addr": "千葉県北西部",
+       "isArea": true,
+       "scale": 50
+      },
+      {
+       "pref": "埼玉県",
+       "addr": "埼玉県南部",
+       "isArea": true,
+       "scale": 50
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  },
+  {
+   "id": "S1-25",
+   "note": "名古屋の区（名古屋中区県庁）が scale=46（5弱以上と推定、未入手）。46 は数えず、「震度5弱以上と推定の観測点があり未確認」と警告する。最大震度の点は豊田市（一般の市）の5強だけなので general。該当県は0",
+   "records551": [
+    {
+     "code": 551,
+     "earthquake": {
+      "time": "2026/12/02 15:40:00",
+      "hypocenter": {
+       "name": "愛知県東部"
+      },
+      "maxScale": 50,
+      "domesticTsunami": "None"
+     },
+     "issue": {
+      "time": "2026/12/02 15:47:00",
+      "type": "DetailScale"
+     },
+     "points": [
+      {
+       "pref": "愛知県",
+       "addr": "豊田市小坂本町",
+       "isArea": false,
+       "scale": 50
+      },
+      {
+       "pref": "愛知県",
+       "addr": "名古屋中区県庁",
+       "isArea": false,
+       "scale": 46
+      },
+      {
+       "pref": "愛知県",
+       "addr": "岡崎市十王町",
+       "isArea": false,
+       "scale": 45
+      },
+      {
+       "pref": "岐阜県",
+       "addr": "恵那市長島町",
+       "isArea": false,
+       "scale": 45
+      }
+     ]
+    }
+   ],
+   "records552": [],
+   "expected": {
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "tsunamiPrefs": [],
+    "hasWarning": true
+   }
+  }
+ ]
+}

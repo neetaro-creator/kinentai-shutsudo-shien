@@ -183,3 +183,13 @@ window.addEventListener('afterprint', () => {
   });
 });
 */
+
+/* --- 地震情報の取り込み（段階5） --- */
+.quake-wrap{margin:12px}
+.quake-panel{background:#fff;border:2px solid var(--line);border-radius:10px;padding:12px}
+.quake-panel h2{margin:0 0 8px;font-size:1.1rem}
+.quake-panel .row,.quake-list{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;padding:0;list-style:none}
+.quake-list button{text-align:left}
+.quake-info{border-left:6px solid #1565c0;background:#f1f6fd;padding:8px 12px;margin-top:8px}
+.quake-warn{border:3px solid #b71c1c;background:#fff4f4;padding:8px 12px;margin-top:8px;font-weight:600}
+.quake-warn::before{content:"⚠ "}
