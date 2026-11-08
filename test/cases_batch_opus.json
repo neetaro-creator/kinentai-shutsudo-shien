@@ -1,0 +1,5336 @@
+{
+ "cases": [
+  {
+   "id": "C6-001",
+   "note": "津波単独・第1次群1県。地震は5弱以下で区分なし。津波1県なので単県→tsunami_single。第1次の統合機動部隊は出動準備、大隊はなし→prepare。kubunは重複を除いて Ⅰ→Ⅳ の順に並べる（以下同じ）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "愛知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-002",
+   "note": "津波単独・出動準備群1県（単県）。tsunami_singleは両隊なし。区分はあるので→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "高知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-003",
+   "note": "津波単独・対象外県1県。両隊なし、区分あり→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "千葉"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": false
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-004",
+   "note": "津波2県・別群（第1次＋出動準備）→複数県。三重(tsunami_multi)は統合機動部隊が出動準備、和歌山(tsunami_multi)も統合機動部隊が出動準備。大隊はどちらもなし。Ⅲ-イは1つにまとめる",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "三重",
+     "和歌山"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-005",
+   "note": "津波2県・同群（出動準備群どうし）→複数県。tsunami_multiは統合機動部隊が出動準備。単県なら両隊なしになるので、県数の数え方を確かめるケース",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "高知",
+     "徳島"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-006",
+   "note": "津波2県＝出動準備群＋対象外県。県数は対象外県も含めて2なので複数県。神奈川のtsunami_multiで統合機動部隊が出動準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "神奈川",
+     "東京"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-007",
+   "note": "津波3県・すべて対象外県→複数県だが各県とも両隊なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "岩手",
+     "宮城",
+     "福島"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-008",
+   "note": "津波2県・同群（第1次どうし）→複数県。統合機動部隊は出動準備、大隊はなし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "石川",
+     "福井"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": true
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-009",
+   "note": "津波2県＝第1次群＋対象外県→複数県。愛知で統合機動部隊が出動準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "愛知",
+     "千葉"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-010",
+   "note": "地震＋津波で地震のほうが強い。陸域・愛知・震度7・単県→Ⅰ、s7_singleで両隊とも迅速出動。津波は愛知(単県)で統合機動部隊が出動準備。隊ごとに強いほうを採って両隊とも迅速出動",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "愛知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-011",
+   "note": "地震＋津波で津波のほうが強い。和歌山・6弱・単県→Ⅲ-ア、出動準備群のs6w_singleで両隊なし。津波は2県で複数県、和歌山・徳島とも統合機動部隊が出動準備→統合機動部隊は出動準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "和歌山",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "和歌山",
+     "徳島"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-012",
+   "note": "地震＋津波で、どちらも出動準備群の単県。地震はs6w_single、津波はtsunami_singleで、いずれも両隊なし。区分はあるので→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "和歌山",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "和歌山"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-013",
+   "note": "地震が複数県で、津波は単県。兵庫・6強・2県→Ⅱ複数県、出動準備群のs6s_multiで両隊とも出動準備。津波は兵庫(単県)で両隊なし。地震のほうを採る",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "兵庫",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [
+     "兵庫"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-014",
+   "note": "津波は対象外県、地震は対象県。石川・震度7・単県→第1次群のs7_singleで両隊とも迅速出動。津波は新潟（対象外）で両隊なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "新潟"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": true
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-015",
+   "note": "震央が海域なので災害発生都道府県はmaxShindoPrefの三重。6強・単県→第1次群のs6s_singleで両隊とも出動準備。津波2県（複数県）では統合機動部隊が出動準備。合わせて両隊とも出動準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "三重",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "三重",
+     "愛知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-016",
+   "note": "地震は対象外県、津波は対象県。東京・6強(general)・単県→Ⅱだが東京は対象外なので両隊なし。津波は千葉＋神奈川で複数県、神奈川のtsunami_multiで統合機動部隊が出動準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "千葉",
+     "神奈川"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-017",
+   "note": "東京都特別区で6弱→Ⅱ。東京は対象外。津波も東京(単県)で対象外→両隊なし、区分あり→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "東京"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-018",
+   "note": "地震は区分なし（5強・general、below-threshold-5strong）で、津波だけが有効。愛知(単県)で統合機動部隊が出動準備。qualifyingPrefCount=0でも地震の区分がないので入力不足にはならない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "愛知",
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "愛知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-019",
+   "note": "地震は5強・generalで区分なし。津波は千葉（対象外）で区分Ⅲ-イがあるので、info（区分あり）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "千葉",
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "千葉"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-020",
+   "note": "政令市で5強→Ⅲ-ア。静岡・単県→出動準備群のs6w_singleで両隊なし。津波も静岡(単県)で両隊なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "静岡"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-021",
+   "note": "出動準備群の地震（震度7・単県）。s7_singleで両隊とも出動準備。津波2県（複数県）では統合機動部隊が出動準備。迅速出動にはならない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "静岡",
+     "愛知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-022",
+   "note": "出動準備群の地震（震度7・3県）→s7_multiで両隊とも迅速出動。津波3県では統合機動部隊が出動準備。両隊とも迅速出動を採る",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "静岡",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [
+     "静岡",
+     "愛知",
+     "三重"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-023",
+   "note": "地震が複数県（6弱・富山・2県→出動準備群のs6w_multi）で統合機動部隊が出動準備。津波は富山(単県)で両隊なし。地震を採る",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "富山",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [
+     "富山"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C6-024",
+   "note": "入力不足。地震に区分Ⅲ-アがあるのにqualifyingPrefCount=0で単県/複数県が決まらない→全体をindeterminate（津波が有効でも入力不足を優先）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "愛知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C6-025",
+   "note": "入力不足。海域・6強で区分Ⅱがあるのに、maxShindoPrefがnullで災害発生都道府県が空→indeterminate",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "宮城"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C6-026",
+   "note": "アクションプラン（南海トラフ）に該当→手順1で打ち切り。津波が複数県でも区分は決めずindeterminate",
+   "input": {
+    "actionPlan": "nankai",
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "高知",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [
+     "高知",
+     "徳島",
+     "和歌山"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C6-027",
+   "note": "津波（対象外県）＋噴火警報。Ⅳは区分として記録するだけで隊の措置はない。両隊なしで区分あり→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "鹿児島"
+    ],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ",
+     "Ⅳ"
+    ]
+   }
+  },
+  {
+   "id": "C5-001",
+   "note": "海域。震央管轄=愛知（第1次）は無視。最大震度都道府県=東京（群外）。6弱・特別区→Ⅱ・単県。両隊なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": "東京",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C5-002",
+   "note": "海域。震央管轄=愛知（第1次）、最大震度=東京（群外）。震度7・複数県→Ⅰ。愛知で引けばrapidになるが、東京で引くのでinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": "東京",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C5-003",
+   "note": "海域。震央管轄=東京（群外）、最大震度=愛知（第1次）。震度7・単県→第1次 s7_single 迅速/迅速",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "東京",
+    "maxShindoPref": "愛知",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C5-004",
+   "note": "海域。震央管轄=静岡（出動準備群）、最大震度=三重（第1次）。6強・単県→第1次 s6s_single 準備/準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "静岡",
+    "maxShindoPref": "三重",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C5-005",
+   "note": "海域。震央管轄=三重（第1次）、最大震度=静岡（出動準備群）。6強・単県→出動準備群 s6s_single なし/なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "三重",
+    "maxShindoPref": "静岡",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C5-006",
+   "note": "C5-005の複数県版。出動準備群 s6s_multi 準備/準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "三重",
+    "maxShindoPref": "静岡",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C5-007",
+   "note": "海域。震央管轄=千葉（群外）、最大震度=神奈川（出動準備群）。震度7・単県→s7_single 準備/準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "千葉",
+    "maxShindoPref": "神奈川",
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C5-008",
+   "note": "C5-007の複数県版（3県）。s7_multi 迅速/迅速",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "千葉",
+    "maxShindoPref": "神奈川",
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C5-009",
+   "note": "海域。震央管轄=和歌山（出動準備群）、最大震度=京都（第1次）。6弱・政令市→Ⅲ-ア・単県→第1次 s6w_single 準備/なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "和歌山",
+    "maxShindoPref": "京都",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C5-010",
+   "note": "海域。震央管轄=石川（第1次）、最大震度=新潟（群外）。6弱・一般→Ⅲ-ア・単県→群外なのでinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "石川",
+    "maxShindoPref": "新潟",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C5-011",
+   "note": "海域。震央管轄=愛知（第1次）、最大震度=大阪（出動準備群）。5強・政令市→Ⅲ-ア・単県→s6w_single なし/なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": "大阪",
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C5-012",
+   "note": "C5-011の複数県版。出動準備群 s6w_multi 準備/なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": "大阪",
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C5-013",
+   "note": "海域。震央管轄=愛知、最大震度=静岡。5強・一般→区分なし、reason below-threshold-5strong→info。区分がないので件数0でも入力不足にしない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": "静岡",
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C5-014",
+   "note": "海域。震央管轄=三重、最大震度=高知。5弱以下・津波なし→none",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "三重",
+    "maxShindoPref": "高知",
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "none",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C5-015",
+   "note": "海域なのに maxShindoPref=null。epicenterPref=愛知 は代わりに使わない。区分Ⅱがあるのに災害発生都道府県が空→indeterminate",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C5-016",
+   "note": "海域。最大震度=三重 6強だが qualifyingPrefCount=0→単県／複数県が決まらずindeterminate",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": "三重",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C5-017",
+   "note": "海域・震央管轄null。最大震度=高知（出動準備群）6弱・単県→Ⅲ-ア なし/なし。津波 高知のみ→Ⅲ-イ・単県 なし/なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "高知",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "高知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C5-018",
+   "note": "海域。震央管轄=愛知（無視）。最大震度=高知 6弱・単県→なし/なし。津波3県（すべて出動準備群）→tsunami_multi 準備/なし。最も強い措置→準備/なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": "高知",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "高知",
+     "徳島",
+     "和歌山"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C5-019",
+   "note": "海域。震央管轄=静岡、最大震度=東京 5強・一般→地震区分なし。津波 三重（第1次）・単県→準備/なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "静岡",
+    "maxShindoPref": "東京",
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "三重"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C5-020",
+   "note": "海域。震央管轄=愛知（第1次、無視）。最大震度=神奈川 7・単県→出動準備群 s7_single 準備/準備。津波 愛知・静岡→tsunami_multi、両群とも準備/なし。合成→準備/準備。愛知で地震を引くとrapidになる誤りの検出用",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": "神奈川",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "愛知",
+     "静岡"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C5-021",
+   "note": "海域。震央管轄=静岡（無視）。最大震度=東京 6弱・特別区→Ⅱ（群外）。津波 千葉（群外）→Ⅲ-イ。両隊なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "静岡",
+    "maxShindoPref": "東京",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "千葉"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C5-022",
+   "note": "海域・アクションプラン非該当。最大震度=宮城 7・複数県、津波 岩手・宮城・福島。すべて群外→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [
+     "岩手",
+     "宮城",
+     "福島"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅰ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C5-023",
+   "note": "actionPlan=nihonkaikou→区分を決めずindeterminate（第2表の情報を返す）",
+   "input": {
+    "actionPlan": "nihonkaikou",
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [
+     "北海道",
+     "青森",
+     "岩手",
+     "宮城"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C5-024",
+   "note": "actionPlan=nankai→indeterminate。高知 7（出動準備群）だが手順1で打ち切り",
+   "input": {
+    "actionPlan": "nankai",
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "高知",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 5,
+    "tsunamiPrefs": [
+     "高知",
+     "徳島"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": true
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C5-025",
+   "note": "海域。震央管轄=愛知、最大震度=神奈川 5強・一般→地震区分なし。噴火警報→Ⅳのみ（滋賀は対象外）→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": "神奈川",
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅳ"
+    ]
+   }
+  },
+  {
+   "id": "C5-026",
+   "note": "海域。震央管轄=富山（出動準備群、無視）、最大震度=石川（第1次）6強・単県→準備/準備。噴火警報→Ⅳも記録",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "富山",
+    "maxShindoPref": "石川",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ",
+     "Ⅳ"
+    ]
+   }
+  },
+  {
+   "id": "C5-027",
+   "note": "海域。震央管轄=新潟（群外、無視）、最大震度=福井（第1次）6弱・複数県→s6w_multi 準備/なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "新潟",
+    "maxShindoPref": "福井",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C5-028",
+   "note": "海域。震央管轄=京都（第1次、無視）、最大震度=兵庫（出動準備群）6弱・政令市・単県→s6w_single なし/なし→info。京都で引くとprepareになる誤りの検出用",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "京都",
+    "maxShindoPref": "兵庫",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C5-029",
+   "note": "海域。震央管轄=愛知（無視）。最大震度=和歌山 7・複数県→s7_multi 迅速/迅速。津波 和歌山・単県→なし/なし。合成→迅速/迅速",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": "和歌山",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [
+     "和歌山"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": false
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ",
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C5-030",
+   "note": "海域。最大震度=三重 6弱だが qualifyingPrefCount=0→地震の単県／複数県が決まらない。津波は判定可能でも全体はindeterminate",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "静岡",
+    "maxShindoPref": "三重",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "三重"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C3-001",
+   "note": "第１次・石川／陸域・一般・6弱・単県→Ⅲ-ア、s6w_single。統合=出動準備、大隊=なし→prepare。都道府県名は別表第7データの表記（「県」なし）に合わせた",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-002",
+   "note": "第１次・福井／陸域・一般・6弱・複数県→Ⅲ-ア、s6w_multi。統合=出動準備、大隊=なし→prepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "福井",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-003",
+   "note": "第１次・愛知／陸域・政令市（名古屋）・5強・単県→Ⅲ-ア、s6w_single→prepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-004",
+   "note": "第１次・三重／海域震央のため災害発生都道府県=maxShindoPref=三重。一般・6弱・複数県→s6w_multi→prepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "三重",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-005",
+   "note": "第１次・京都／陸域・政令市（京都市）・6弱・複数県→Ⅲ-ア、s6w_multi→prepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "京都",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-006",
+   "note": "出動準備・神奈川／政令市（横浜等）・5強・単県→Ⅲ-ア、s6w_single。統合=なし、大隊=なし→区分ありのためinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "神奈川",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-007",
+   "note": "出動準備・神奈川／政令市・5強・複数県→s6w_multi。統合=出動準備、大隊=なし→prepare（C3-006と単県／複数県の対）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "神奈川",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-008",
+   "note": "出動準備・富山／一般・6弱・単県→s6w_single。両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "富山",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-009",
+   "note": "出動準備・岐阜／一般・6弱・複数県→s6w_multi。統合=出動準備→prepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "岐阜",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-010",
+   "note": "出動準備・静岡／政令市・6弱・単県→s6w_single。両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-011",
+   "note": "出動準備・大阪／政令市・5強・複数県→s6w_multi。統合=出動準備→prepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-012",
+   "note": "出動準備・兵庫／政令市（神戸）・6弱・複数県→s6w_multi→prepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "兵庫",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 4,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-013",
+   "note": "出動準備・奈良／一般・6弱・単県→s6w_single。両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "奈良",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-014",
+   "note": "出動準備・和歌山／海域震央。災害発生都道府県=maxShindoPref=和歌山。一般・6弱・複数県→s6w_multi→prepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "和歌山",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-015",
+   "note": "出動準備・鳥取／一般・6弱・単県→s6w_single。両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "鳥取",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-016",
+   "note": "出動準備・島根／一般・6弱・複数県→s6w_multi→prepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "島根",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-017",
+   "note": "出動準備・岡山／政令市（岡山市）・5強・単県→s6w_single。両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "岡山",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-018",
+   "note": "出動準備・徳島／海域震央。災害発生都道府県=maxShindoPref=徳島。一般・6弱・単県→s6w_single。両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "徳島",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-019",
+   "note": "出動準備・香川／一般・6弱・複数県→s6w_multi→prepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "香川",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-020",
+   "note": "出動準備・愛媛／一般・6弱・単県→s6w_single。両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛媛",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-021",
+   "note": "出動準備・高知／海域震央。災害発生都道府県=maxShindoPref=高知。一般・6弱・複数県→s6w_multi→prepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "高知",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-022",
+   "note": "どちらでもない・東京／東京都特別区・5強・単県→Ⅲ-ア。第１次・出動準備のどちらでもないため両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-023",
+   "note": "どちらでもない・東京／東京都特別区・5強・複数県→Ⅲ-ア。どちらでもないため複数県でも両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-024",
+   "note": "どちらでもない・北海道／政令市（札幌）・5強・複数県→Ⅲ-ア。両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "北海道",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-025",
+   "note": "どちらでもない・宮城／海域震央。災害発生都道府県=maxShindoPref=宮城。政令市（仙台）・6弱・単県→Ⅲ-ア。両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-026",
+   "note": "どちらでもない・新潟／一般・6弱・複数県→Ⅲ-ア。両方なし→info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "新潟",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C3-027",
+   "note": "入力不足・石川／一般・6弱でⅢ-アだが、qualifyingPrefCount=0のため単県／複数県が決まらない→indeterminate",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C3-028",
+   "note": "入力不足・陸域なのにepicenterPrefがnull。政令市・5強でⅢ-アだが、災害発生都道府県が空→indeterminate",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C3-029",
+   "note": "入力不足・海域なのにmaxShindoPrefがnull。一般・6弱・複数県でⅢ-アだが、災害発生都道府県が空→indeterminate",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C3-030",
+   "note": "境界・石川／一般・5強→区分なし、reason below-threshold-5strong→info。C3-003の政令市5強（Ⅲ-ア）との対。区分がなく別表第7の列を引かないため、unitsは両方なしとした（仕様に明記なし）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C1-001",
+   "note": "第１次・石川・陸域・単県。統合機動部隊・大隊とも s7_single=迅速出動",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-002",
+   "note": "第１次・石川・陸域・複数県（2県）。s7_multi=迅速出動／迅速出動",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-003",
+   "note": "第１次・福井・陸域・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "福井",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-004",
+   "note": "第１次・福井・海域（maxShindoPrefで災害発生都道府県を決定）・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "福井",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-005",
+   "note": "第１次・愛知・陸域・政令市（名古屋市）で震度7・単県。震度7は観測場所によらずⅠ",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-006",
+   "note": "第１次・愛知・陸域・複数県（3県）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-007",
+   "note": "第１次・三重・海域・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "三重",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-008",
+   "note": "第１次・三重・陸域・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "三重",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-009",
+   "note": "第１次・京都・陸域・政令市（京都市）・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "京都",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-010",
+   "note": "第１次・京都・陸域・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "京都",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-011",
+   "note": "出動準備・神奈川・陸域・政令市・単県。s7_single=出動準備／出動準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "神奈川",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-012",
+   "note": "出動準備・富山・陸域・複数県。s7_multi=迅速出動／迅速出動",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "富山",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-013",
+   "note": "出動準備・岐阜・陸域・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "岐阜",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-014",
+   "note": "出動準備・静岡・海域・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "静岡",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-015",
+   "note": "出動準備・大阪・陸域・政令市・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-016",
+   "note": "出動準備・兵庫・陸域・政令市・複数県（3県）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "兵庫",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-017",
+   "note": "出動準備・奈良・陸域・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "奈良",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-018",
+   "note": "出動準備・和歌山・海域・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "和歌山",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-019",
+   "note": "出動準備・鳥取・陸域・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "鳥取",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-020",
+   "note": "出動準備・島根・陸域・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "島根",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-021",
+   "note": "出動準備・岡山・陸域・政令市（岡山市）・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "岡山",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-022",
+   "note": "出動準備・徳島・海域・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "徳島",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-023",
+   "note": "出動準備・香川・陸域・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "香川",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-024",
+   "note": "出動準備・愛媛・陸域・複数県（5県）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛媛",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 5,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-025",
+   "note": "出動準備・高知・海域・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "高知",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-026",
+   "note": "どちらでもない・東京・特別区で震度7・単県。actionPlanはnull入力（首都直下の判断は入力側）。手順8で両方なし→区分ありなのでinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-027",
+   "note": "どちらでもない・宮城・海域・複数県。actionPlanはnull入力",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-028",
+   "note": "どちらでもない・福岡・陸域・政令市・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "福岡",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-029",
+   "note": "どちらでもない・滋賀（自県）・陸域・複数県。別表第7の第１次・出動準備どちらの県リストにも無いので手順8どおり両方なし→info（自県被災時の扱いは仕様外のため要確認）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "滋賀",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C1-030",
+   "note": "第１次・石川・震度7だがqualifyingPrefCount=0。区分ありで単県／複数県が決まらない→手順6・11で入力不足",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C2-001",
+   "note": "第１次・石川・陸域・6強・単県。s6s_singleは統合・大隊とも出動準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-002",
+   "note": "第１次・福井・陸域・6強・複数県。s6s_multiは統合・大隊とも出動準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "福井",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": false
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-003",
+   "note": "第１次・愛知・海域（maxShindoPrefを使う）・6強・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "愛知",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-004",
+   "note": "第１次・三重・陸域・6強（政令市以外）・複数県3",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "三重",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": true
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-005",
+   "note": "第１次・京都・陸域・6強を政令市で観測・単県。6強は観測場所によらずⅡ",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "京都",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-006",
+   "note": "出動準備・神奈川・6強を政令市で観測・単県。s6s_singleは両方なしのためinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "神奈川",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-007",
+   "note": "出動準備・富山・6強・複数県。s6s_multiは両方とも出動準備",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "富山",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-008",
+   "note": "出動準備・岐阜・6強・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "岐阜",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-009",
+   "note": "出動準備・静岡・6強・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": false
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-010",
+   "note": "出動準備・大阪・6強を政令市で観測・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-011",
+   "note": "出動準備・兵庫・6強を政令市で観測・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "兵庫",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-012",
+   "note": "出動準備・奈良・6強・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "奈良",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-013",
+   "note": "出動準備・和歌山・海域・6強・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "和歌山",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-014",
+   "note": "出動準備・鳥取・6強・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "鳥取",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-015",
+   "note": "出動準備・島根・6強・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "島根",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-016",
+   "note": "出動準備・岡山・6強を政令市で観測・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "岡山",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-017",
+   "note": "出動準備・徳島・海域・6強・複数県3",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "徳島",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": true
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-018",
+   "note": "出動準備・香川・6強・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "香川",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-019",
+   "note": "出動準備・愛媛・6強・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛媛",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-020",
+   "note": "出動準備・高知・海域・6強・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "高知",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-021",
+   "note": "どちらでもない県・滋賀（自県）・6強・単県。別表第7のどちらの表にも載らないため両方なし。区分ありなのでinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "滋賀",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-022",
+   "note": "どちらでもない県・宮城・6強を政令市で観測・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "宮城",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-023",
+   "note": "どちらでもない県・熊本・6強・単県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "熊本",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-024",
+   "note": "どちらでもない県・北海道・海域・6強・複数県",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "北海道",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-025",
+   "note": "東京都特別区で6弱・単県 → Ⅱ。東京はどちらの表にもないため両方なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-026",
+   "note": "東京都特別区で6弱・海域・複数県 → Ⅱ（s6s_multi列）。東京は対象外で両方なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "東京",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-027",
+   "note": "陸域ではepicenterPrefを使う。岐阜（出動準備）・単県なので、maxShindoPrefの愛知（第１次）は引かない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "岐阜",
+    "maxShindoPref": "愛知",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C2-028",
+   "note": "6強でⅡはあるが、qualifyingPrefCountが0のため単県・複数県が決まらず入力不足",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "石川",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C2-029",
+   "note": "陸域でepicenterPrefがnull。災害発生都道府県が空のため入力不足（maxShindoPrefは陸域では使わない）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": "愛知",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C2-030",
+   "note": "海域でmaxShindoPrefがnull。東京都特別区6弱でⅡはあるが、災害発生都道府県が空のため入力不足",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-001",
+   "note": "アクションプラン首都直下。手順1でここで終わるため、区分は決めずindeterminateになる。",
+   "input": {
+    "actionPlan": "shuto",
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-002",
+   "note": "アクションプラン南海トラフ。震度7と複数県の大津波警報があってもrapidにはならず、手順1でindeterminateになる。",
+   "input": {
+    "actionPlan": "nankai",
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "高知",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [
+     "静岡",
+     "愛知",
+     "三重",
+     "和歌山",
+     "高知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": true
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-003",
+   "note": "アクションプラン日本海溝・千島海溝。手順1でindeterminateになる。",
+   "input": {
+    "actionPlan": "nihonkaikou",
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [
+     "北海道",
+     "青森",
+     "岩手",
+     "宮城"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": false
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-004",
+   "note": "アクションプランだけ指定し、他の入力はすべて空。手順1が先に効くため、noneではなくindeterminateになる。",
+   "input": {
+    "actionPlan": "nankai",
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-005",
+   "note": "噴火警報のみ。区分はⅣで、隊は両方なし（手順10）なのでinfo。解釈1: Ⅳには災害発生都道府県の入力がないため、手順11の『都道府県が空』は地震区分だけに適用するものとして期待値を決めた。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅳ"
+    ]
+   }
+  },
+  {
+   "id": "C7-006",
+   "note": "噴火警報と、愛知の震度5弱以下の地震（区分なし）。qualifyingPrefCountが0でも地震区分がないので入力不足にはならない。区分はⅣのみでinfo。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅳ"
+    ]
+   }
+  },
+  {
+   "id": "C7-007",
+   "note": "噴火警報と、愛知（第１次大隊）の震度7・単県（Ⅰ、s7_single）。統合機動部隊・大隊とも迅速出動。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ",
+     "Ⅳ"
+    ]
+   }
+  },
+  {
+   "id": "C7-008",
+   "note": "噴火警報と、静岡（出動準備大隊）の震度6強・複数県（Ⅱ、s6s_multi）。統合機動部隊・大隊とも出動準備。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ",
+     "Ⅳ"
+    ]
+   }
+  },
+  {
+   "id": "C7-009",
+   "note": "噴火警報と、愛知の震度5強（観測場所general）。地震は区分なし（below-threshold-5strong）。区分はⅣのみで隊は両方なし、info。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅳ"
+    ]
+   }
+  },
+  {
+   "id": "C7-010",
+   "note": "噴火警報と、三重（第１次大隊）の大津波警報・単県（Ⅲ-イ、tsunami_single）。統合機動部隊は出動準備、大隊はなしで、prepare。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "三重"
+    ],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ",
+     "Ⅳ"
+    ]
+   }
+  },
+  {
+   "id": "C7-011",
+   "note": "噴火警報と、東京（どの表の大隊にも該当しない）の震度6強（Ⅱ）。隊は両方なしでinfo。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ",
+     "Ⅳ"
+    ]
+   }
+  },
+  {
+   "id": "C7-012",
+   "note": "噴火警報とアクションプラン首都直下。手順1が優先するため、Ⅳも記録しない。",
+   "input": {
+    "actionPlan": "shuto",
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-013",
+   "note": "震央が陸域でepicenterPrefがnull、震度6強（Ⅱ）。区分があるのに災害発生都道府県が空なので、手順11でindeterminate。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-014",
+   "note": "震央が海域でmaxShindoPrefがnull。epicenterPrefに愛知が入っていても使わないので、都道府県は空になりindeterminate。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-015",
+   "note": "震央が陸域でepicenterPrefがnull。maxShindoPrefに愛知が入っていても使わないので、都道府県は空になりindeterminate（政令市6弱でⅢ-ア）。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": "愛知",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-016",
+   "note": "都道府県が空で震度5強（観測場所general）。区分がないので手順11は適用しない。reasonがbelow-threshold-5strongなのでinfo。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-017",
+   "note": "都道府県が空で震度5弱以下、ほかに何もなし。区分も5強もないのでnone。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "none",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-018",
+   "note": "都道府県が空の地震区分（6弱、Ⅲ-ア）と噴火警報。地震側が入力不足なので、全体がindeterminate。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-019",
+   "note": "震央が海域でmaxShindoPrefがnull、震度6強（Ⅱ）と、高知の大津波警報。地震側の都道府県が空なので、全体がindeterminate。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "高知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-020",
+   "note": "qualifyingPrefCountが0で、愛知の震度6弱（Ⅲ-ア）。単県か複数県か決まらないのでindeterminate。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-021",
+   "note": "qualifyingPrefCountが0で、京都の政令市5強（Ⅲ-ア）。indeterminate。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "京都",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-022",
+   "note": "qualifyingPrefCountが0で、愛知の震度7（Ⅰ）と噴火警報。地震側が入力不足なのでindeterminate。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-023",
+   "note": "qualifyingPrefCountが0で、愛知の震度5強（観測場所general）。区分がないので入力不足にはならない。5強の理由によりinfo。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-024",
+   "note": "qualifyingPrefCountが0で、地震は区分なし。津波は三重の1県なので単県（tsunami_single）。統合機動部隊は出動準備、大隊はなしでprepare。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "三重",
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "三重"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-イ"
+    ]
+   }
+  },
+  {
+   "id": "C7-025",
+   "note": "不明な震度文字列（全角数字の『６強』）。解釈2: 仕様の値以外は手順11の『など』にあたる入力不足とみなしてindeterminateとした。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "６強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-026",
+   "note": "不明な震度文字列『6』（強弱なし）。解釈2によりindeterminate。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": null,
+    "maxShindo": "6",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-027",
+   "note": "不明な震度文字列『震度7』と噴火警報。解釈2によりindeterminate。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "震度7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": true,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C7-028",
+   "note": "nationalDisasterがtrue。愛知の震度7・単県（s7_single）。C7-029、C7-030と結果が同じであること。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": true
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C7-029",
+   "note": "nationalDisasterがfalse。入力はC7-028と同じ。level・units・kubunはC7-028と同じ（変わるのは自本部割当の別表9-1／9-2の選択だけ）。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": false
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C7-030",
+   "note": "nationalDisasterがnull。入力はC7-028と同じ。nullでもindeterminateにはならない（割当で9-1・9-2の両方を返すだけ）。",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C4-001",
+   "note": "愛知・震度7・general・単県。手順3でⅠ、手順7で列s7_single、第1次大隊の行は統合=迅速出動・大隊=迅速出動。手順10でrapid",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C4-002",
+   "note": "愛知・震度7・seirei（名古屋市）・単県。区分はplaceに関係なくⅠ。s7_singleは迅速出動・迅速出動でrapid",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C4-003",
+   "note": "東京・震度7・tokyo23・単県。区分はⅠ。東京は第1次にも出動準備にも載っていないため両方なし。区分があるのでinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C4-004",
+   "note": "大阪・震度7・seirei・単県。区分はⅠ。出動準備大隊のs7_singleは出動準備・出動準備なのでprepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C4-005",
+   "note": "大阪・震度7・seirei・複数県（2県）。区分はⅠ。出動準備大隊のs7_multiは迅速出動・迅速出動なのでrapid",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C4-006",
+   "note": "大阪・震度7・general・複数県（3県）。区分はⅠ。s7_multiは迅速出動・迅速出動なのでrapid",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "rapid",
+    "units": {
+     "gokan": "迅速出動",
+     "taitai": "迅速出動"
+    },
+    "kubun": [
+     "Ⅰ"
+    ]
+   }
+  },
+  {
+   "id": "C4-007",
+   "note": "愛知・震度6強・general・単県。区分はⅡ。第1次大隊のs6s_singleは出動準備・出動準備なのでprepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C4-008",
+   "note": "愛知・震度6強・seirei・単県。区分はⅡ（6強はplaceに関係なくⅡ）。s6s_singleは出動準備・出動準備なのでprepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C4-009",
+   "note": "東京・震度6強・tokyo23・単県。actionPlan=nullの入力なので手順1は通らない（首都直下の条件に当たり得るが入力が正）。区分はⅡ。東京はどの大隊表にもないので両方なし、info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C4-010",
+   "note": "大阪・震度6強・seirei・単県。区分はⅡ。出動準備大隊のs6s_singleはなし・なし。区分があるのでinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C4-011",
+   "note": "大阪・震度6強・seirei・複数県（2県）。区分はⅡ。s6s_multiは出動準備・出動準備なのでprepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C4-012",
+   "note": "東京・震度6弱・tokyo23・単県。特別区の6弱は手順3でⅡに格上げ（Ⅲ-アではない）。東京は表にないので両方なし、info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C4-013",
+   "note": "東京・震度6弱・general（多摩地域など特別区以外）・単県。区分はⅢ-ア（C4-012と区分が分かれる境界）。両方なし、info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C4-014",
+   "note": "愛知・震度6弱・general・単県。区分はⅢ-ア。第1次大隊のs6w_singleは統合=出動準備・大隊=なし。手順10でprepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C4-015",
+   "note": "愛知・震度6弱・seirei・単県。政令市の6弱はⅡにならずⅢ-ア（格上げはtokyo23だけ）。s6w_singleは出動準備・なしでprepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C4-016",
+   "note": "大阪・震度6弱・seirei・単県。区分はⅢ-ア。出動準備大隊のs6w_singleはなし・なし。区分があるのでinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C4-017",
+   "note": "大阪・震度6弱・general・複数県（2県）。区分はⅢ-ア。s6w_multiは出動準備・なしでprepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C4-018",
+   "note": "東京・震度5強・tokyo23・単県。特別区の5強はⅢ-ア（Ⅱにはならない）。両方なし、info",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C4-019",
+   "note": "愛知・震度5強・seirei（名古屋市）・単県。政令市の5強はⅢ-ア。s6w_singleは出動準備・なしでprepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C4-020",
+   "note": "大阪・震度5強・seirei・単県。区分はⅢ-ア。出動準備大隊のs6w_singleはなし・なしでinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C4-021",
+   "note": "大阪・震度5強・seirei・複数県（2県）。区分はⅢ-ア。s6w_multiは出動準備・なしでprepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "なし"
+    },
+    "kubun": [
+     "Ⅲ-ア"
+    ]
+   }
+  },
+  {
+   "id": "C4-022",
+   "note": "愛知・震度5強・general。手順3で区分なし、reasonはbelow-threshold-5strong。区分がないので列が決まらず両方なし。県数0でも区分がないので入力不足にはならない。手順10でinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C4-023",
+   "note": "大阪・震度5強・general。区分なし、reasonはbelow-threshold-5strongでinfo",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C4-024",
+   "note": "東京・震度5強・general（特別区以外）。区分なし、reasonはbelow-threshold-5strongでinfo。C4-018（tokyo23ならⅢ-ア）との境界",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "info",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C4-025",
+   "note": "愛知・震度5弱以下・general。区分なし、5強のreasonもないのでnone",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "none",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C4-026",
+   "note": "東京・震度5弱以下・tokyo23。特別区でも5弱以下は区分なし（格上げは5強から）。none",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "none",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C4-027",
+   "note": "大阪・震度5弱以下・seirei。政令市でも5弱以下は区分なし。none",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": null,
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "none",
+    "units": {
+     "gokan": "なし",
+     "taitai": "なし"
+    },
+    "kubun": []
+   }
+  },
+  {
+   "id": "C4-028",
+   "note": "震央は海域。手順2で災害発生都道府県はmaxShindoPrefの大阪。震度6強・general・複数県でⅡ、s6s_multiは出動準備・出動準備でprepare",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "大阪",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "prepare",
+    "units": {
+     "gokan": "出動準備",
+     "taitai": "出動準備"
+    },
+    "kubun": [
+     "Ⅱ"
+    ]
+   }
+  },
+  {
+   "id": "C4-029",
+   "note": "愛知・震度6弱・seirei・県数0。区分（Ⅲ-ア）があるのに単県／複数県が決まらない。手順6・11で入力不足、indeterminate",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "愛知",
+    "maxShindoPref": null,
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  },
+  {
+   "id": "C4-030",
+   "note": "東京・震度5強・tokyo23・県数0。特別区の5強で区分（Ⅲ-ア）が出るのに県数0なので入力不足、indeterminate（general 5強の県数0がinfoになるC4-024との対比）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": null,
+    "maxShindo": "5強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null
+   },
+   "expected": {
+    "level": "indeterminate",
+    "units": null,
+    "kubun": []
+   }
+  }
+ ]
+}

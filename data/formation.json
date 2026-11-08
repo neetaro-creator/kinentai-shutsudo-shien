@@ -1,0 +1,1199 @@
+{
+ "_meta": {
+  "source": "緊急消防援助隊滋賀県大隊応援等実施計画（令和8年8月版）01_応援等実施計画.pdf p.22/29/30（印刷頁19/26/27）",
+  "pages": {
+   "5-1": {
+    "計画PDF": 22,
+    "印刷頁": 19
+   },
+   "9-1": {
+    "計画PDF": 29,
+    "印刷頁": 26
+   },
+   "9-2": {
+    "計画PDF": 30,
+    "印刷頁": 27
+   }
+  },
+  "method": "ページ画像（PDF 220〜300dpi）をClaude API（Sonnet 5.5・高エフォート）で2回独立に読み、画像を正として正規化。別表Ａ・第7はさらにFable 5.1が先の読みを見ずに全セルを読み直して照合。",
+  "transcribed": "2026-11-08",
+  "status": "本人が原本と照合済み（2026-11-08）。要確認18件はすべて読みどおり",
+  "note": "別表5-2〜5-4、別表6は今回の対象外。",
+  "cross_check": "Sonnet 2回の読みは全セル一致。5-1は小隊の数（出動小隊数）と各本部の件数を突合、本部別の合計の総和は38隊で表の総計と一致。9-2は表側の注記（計14／17／8隊）と件数が一致。"
+ },
+ "b5_1": {
+  "id": "5-1",
+  "title": "滋賀県大隊の編成【災害初期（発災から概ね６日間）の出動隊編成】",
+  "page_plan": 19,
+  "notes": [
+   "滋賀県大隊の編成【災害初期（発災から概ね６日間）の出動隊編成】（統合機動部隊および安全管理部隊を含む）",
+   "※下記の出動体制を基本とするが、災害の活動ニーズは日々変化するため、必ずしもこのような出動体制とならない場合もあることに留意すること。",
+   "※登録隊の５～４割程度の出動を想定（「５～４割程度の出動」に下線）",
+   "※乗り換え運用",
+   "※災害状況に応じて追加する隊",
+   "- 19 -"
+  ],
+  "units": [
+   {
+    "chutai": "指揮隊",
+    "registered": 4,
+    "deployed_total": 4,
+    "block": "南ブロック",
+    "deployed_in_block": 3,
+    "formed_by": [
+     {
+      "honbu": "大津市消防局",
+      "note": null
+     },
+     {
+      "honbu": "湖南広域消防局",
+      "note": null
+     }
+    ],
+    "safety_unit_honbu": {
+     "honbu": "大津市消防局",
+     "note": null
+    }
+   },
+   {
+    "chutai": "指揮隊",
+    "registered": 4,
+    "deployed_total": 4,
+    "block": "北ブロック",
+    "deployed_in_block": 1,
+    "formed_by": [
+     {
+      "honbu": "東近江行政組合消防本部",
+      "note": null
+     }
+    ],
+    "safety_unit_honbu": null
+   },
+   {
+    "chutai": "消火中隊",
+    "registered": 25,
+    "deployed_total": 10,
+    "block": "南ブロック",
+    "deployed_in_block": 5,
+    "formed_by": [
+     {
+      "honbu": "大津市消防局",
+      "note": null
+     },
+     {
+      "honbu": "大津市消防局",
+      "note": null
+     },
+     {
+      "honbu": "湖南広域消防局",
+      "note": null
+     },
+     {
+      "honbu": "甲賀広域行政組合消防本部",
+      "note": null
+     },
+     {
+      "honbu": "高島市消防本部",
+      "note": null
+     }
+    ],
+    "safety_unit_honbu": null
+   },
+   {
+    "chutai": "消火中隊",
+    "registered": 25,
+    "deployed_total": 10,
+    "block": "北ブロック",
+    "deployed_in_block": 5,
+    "formed_by": [
+     {
+      "honbu": "東近江行政組合消防本部",
+      "note": null
+     },
+     {
+      "honbu": "彦根市消防本部",
+      "note": null
+     },
+     {
+      "honbu": "湖北地域消防本部",
+      "note": null
+     },
+     {
+      "honbu": "湖北地域消防本部",
+      "note": null
+     }
+    ],
+    "safety_unit_honbu": {
+     "honbu": "東近江行政組合消防本部",
+     "note": null
+    }
+   },
+   {
+    "chutai": "救助中隊",
+    "registered": 9,
+    "deployed_total": 7,
+    "block": "南ブロック",
+    "deployed_in_block": 4,
+    "formed_by": [
+     {
+      "honbu": "大津市消防局",
+      "note": null
+     },
+     {
+      "honbu": "大津市消防局",
+      "note": "津波・大規模風水害対策車"
+     },
+     {
+      "honbu": "湖南広域消防局",
+      "note": "救助先行車"
+     },
+     {
+      "honbu": "湖南広域消防局",
+      "note": "救助先行車"
+     }
+    ],
+    "safety_unit_honbu": null
+   },
+   {
+    "chutai": "救助中隊",
+    "registered": 9,
+    "deployed_total": 7,
+    "block": "北ブロック",
+    "deployed_in_block": 3,
+    "formed_by": [
+     {
+      "honbu": "東近江行政組合消防本部",
+      "note": null
+     },
+     {
+      "honbu": "東近江行政組合消防本部",
+      "note": "※小型救助車"
+     },
+     {
+      "honbu": "湖北地域消防本部",
+      "note": null
+     }
+    ],
+    "safety_unit_honbu": null
+   },
+   {
+    "chutai": "救急中隊",
+    "registered": 16,
+    "deployed_total": 7,
+    "block": "南ブロック",
+    "deployed_in_block": 4,
+    "formed_by": [
+     {
+      "honbu": "大津市消防局",
+      "note": null
+     },
+     {
+      "honbu": "湖南広域消防局",
+      "note": null
+     },
+     {
+      "honbu": "甲賀広域行政組合消防本部",
+      "note": null
+     }
+    ],
+    "safety_unit_honbu": {
+     "honbu": "湖南広域消防局",
+     "note": null
+    }
+   },
+   {
+    "chutai": "救急中隊",
+    "registered": 16,
+    "deployed_total": 7,
+    "block": "北ブロック",
+    "deployed_in_block": 3,
+    "formed_by": [
+     {
+      "honbu": "東近江行政組合消防本部",
+      "note": null
+     },
+     {
+      "honbu": "彦根市消防本部",
+      "note": null
+     },
+     {
+      "honbu": "湖北地域消防本部",
+      "note": null
+     }
+    ],
+    "safety_unit_honbu": null
+   },
+   {
+    "chutai": "後方支援中隊",
+    "registered": 12,
+    "deployed_total": 9,
+    "block": "南ブロック",
+    "deployed_in_block": 5,
+    "formed_by": [
+     {
+      "honbu": "大津市消防局",
+      "note": null
+     },
+     {
+      "honbu": "湖南広域消防局",
+      "note": null
+     },
+     {
+      "honbu": "湖南広域消防局",
+      "note": "燃料補給車"
+     },
+     {
+      "honbu": "甲賀広域行政組合消防本部",
+      "note": null
+     },
+     {
+      "honbu": "高島市消防本部",
+      "note": null
+     }
+    ],
+    "safety_unit_honbu": null
+   },
+   {
+    "chutai": "後方支援中隊",
+    "registered": 12,
+    "deployed_total": 9,
+    "block": "北ブロック",
+    "deployed_in_block": 4,
+    "formed_by": [
+     {
+      "honbu": "東近江行政組合消防本部",
+      "note": null
+     },
+     {
+      "honbu": "東近江行政組合消防本部",
+      "note": "支援車Ⅲ型"
+     },
+     {
+      "honbu": "彦根市消防本部",
+      "note": null
+     },
+     {
+      "honbu": "湖北地域消防本部",
+      "note": null
+     }
+    ],
+    "safety_unit_honbu": null
+   },
+   {
+    "chutai": "通信支援小隊",
+    "registered": 1,
+    "deployed_total": 1,
+    "block": "南ブロック",
+    "deployed_in_block": 1,
+    "formed_by": [
+     {
+      "honbu": "湖南広域消防局",
+      "note": null
+     }
+    ],
+    "safety_unit_honbu": null
+   },
+   {
+    "chutai": "特殊装備小隊",
+    "registered": 5,
+    "deployed_total": 1,
+    "block": "北ブロック",
+    "deployed_in_block": 1,
+    "formed_by": [
+     {
+      "honbu": "東近江行政組合消防本部",
+      "note": "※重機及び重機搬送車"
+     }
+    ],
+    "safety_unit_honbu": null
+   }
+  ],
+  "per_honbu": {
+   "大津市消防局": {
+    "list": [
+     "県大隊指揮隊(統合)",
+     "安全管理部隊指揮隊",
+     "消火小隊(統合)",
+     "消火小隊",
+     "救助小隊(統合)",
+     "救助小隊(※統合)",
+     "救急小隊(統合)",
+     "後方支援小隊(統合)"
+    ],
+    "count_stated": 8
+   },
+   "湖南広域消防局": {
+    "list": [
+     "県大隊指揮隊",
+     "消火小隊(統合)",
+     "救助小隊(統合)",
+     "救助小隊(統合)",
+     "救急小隊(統合)",
+     "救急小隊（安全）",
+     "後方支援小隊",
+     "後方支援小隊",
+     "通信支援小隊(統合)"
+    ],
+    "count_stated": 9
+   },
+   "甲賀広域行政組合消防本部": {
+    "list": [
+     "消火小隊",
+     "救急小隊",
+     "後方支援小隊"
+    ],
+    "count_stated": 3
+   },
+   "東近江行政組合消防本部": {
+    "list": [
+     "県大隊指揮隊",
+     "消火小隊(安全)",
+     "消火小隊",
+     "救助小隊",
+     "救急小隊",
+     "後方支援小隊(※統合)",
+     "後方支援小隊",
+     "救助/特殊装備(※統合)"
+    ],
+    "count_stated": 8
+   },
+   "彦根市消防本部": {
+    "list": [
+     "消火小隊",
+     "救急小隊",
+     "後方支援小隊"
+    ],
+    "count_stated": 3
+   },
+   "湖北地域消防本部": {
+    "list": [
+     "消火小隊",
+     "消火小隊",
+     "救助小隊",
+     "救急小隊",
+     "後方支援小隊"
+    ],
+    "count_stated": 5
+   },
+   "高島市消防本部": {
+    "list": [
+     "消火小隊",
+     "後方支援小隊"
+    ],
+    "count_stated": 2
+   }
+  },
+  "consistency_check": {
+   "大津市消防局": {
+    "main_table_count": 8,
+    "per_honbu_listed": 8,
+    "stated": 8
+   },
+   "湖南広域消防局": {
+    "main_table_count": 9,
+    "per_honbu_listed": 9,
+    "stated": 9
+   },
+   "甲賀広域行政組合消防本部": {
+    "main_table_count": 3,
+    "per_honbu_listed": 3,
+    "stated": 3
+   },
+   "東近江行政組合消防本部": {
+    "main_table_count": 9,
+    "per_honbu_listed": 8,
+    "stated": 8
+   },
+   "彦根市消防本部": {
+    "main_table_count": 3,
+    "per_honbu_listed": 3,
+    "stated": 3
+   },
+   "湖北地域消防本部": {
+    "main_table_count": 5,
+    "per_honbu_listed": 5,
+    "stated": 5
+   },
+   "高島市消防本部": {
+    "main_table_count": 2,
+    "per_honbu_listed": 2,
+    "stated": 2
+   }
+  },
+  "consistency_note": "東近江行政組合消防本部は、中隊表から数えると9隊分、本部別表では8隊。『救助（小型救助車）』と『特殊装備（重機及び重機搬送車）』が本部別表で『救助/特殊装備(※統合)』の1行にまとまる（※乗り換え運用）ためと見られる。他の6本部は一致。"
+ },
+ "b9_1": {
+  "id": "9-1",
+  "title": "滋賀県大隊等の迅速出動【区分Ⅰ】にかかる隊編成",
+  "page_plan": 26,
+  "notes": [
+   "※乗り換え運用",
+   "※水上小隊は含まず",
+   "－ 26 －"
+  ],
+  "sections": {
+   "統合機動部隊": [
+    {
+     "chutai": "指揮隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "消火中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "救助中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "大津市消防局",
+       "note": "※津波・大規模風水害対策車"
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": "救助先行車"
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": "救助先行車"
+      }
+     ]
+    },
+    {
+     "chutai": "救助中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": "※小型救助車"
+      }
+     ]
+    },
+    {
+     "chutai": "救急中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "後方支援中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "後方支援中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": "※支援車Ⅲ型"
+      }
+     ]
+    },
+    {
+     "chutai": "通信支援小隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "特殊装備小隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": "※重機及び重機搬送車"
+      }
+     ]
+    }
+   ],
+   "第一次編成陸上隊": [
+    {
+     "chutai": "指揮隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": {
+      "honbu": "大津市消防局",
+      "note": null
+     }
+    },
+    {
+     "chutai": "消火中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      },
+      {
+       "honbu": "甲賀広域行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "高島市消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": null
+    },
+    {
+     "chutai": "消火中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "彦根市消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": {
+      "honbu": "東近江行政組合消防本部",
+      "note": null
+     }
+    },
+    {
+     "chutai": "救助中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "甲賀広域行政組合消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": null
+    },
+    {
+     "chutai": "救助中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": null
+    },
+    {
+     "chutai": "救急中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "甲賀広域行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "高島市消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": {
+      "honbu": "湖南広域消防局",
+      "note": null
+     }
+    },
+    {
+     "chutai": "救急中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "彦根市消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": null
+    }
+   ],
+   "第二次編成陸上隊": [
+    {
+     "chutai": "指揮隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "消火中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      },
+      {
+       "honbu": "甲賀広域行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "甲賀広域行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "高島市消防本部",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "消火中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "彦根市消防本部",
+       "note": null
+      },
+      {
+       "honbu": "彦根市消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "救急中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      },
+      {
+       "honbu": "甲賀広域行政組合消防本部",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "救急中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "後方支援中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": "燃料補給車"
+      },
+      {
+       "honbu": "甲賀広域行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "高島市消防本部",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "後方支援中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "彦根市消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "特殊装備中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "特殊装備中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "彦根市消防本部",
+       "note": null
+      }
+     ]
+    }
+   ]
+  },
+  "counts": {
+   "統合機動部隊": 14,
+   "第一次編成陸上隊": 21,
+   "第二次編成陸上隊": 35
+  }
+ },
+ "b9_2": {
+  "id": "9-2",
+  "title": "滋賀県大隊等の迅速出動【区分Ⅰ】にかかる隊編成（国家的非常災害以外の災害）",
+  "page_plan": 27,
+  "notes": [
+   "※乗り換え運用",
+   "計14隊（※災害状況に応じて追加する隊を含む）［統合機動部隊の表の右側の記載］",
+   "計17隊［第一次編成陸上隊の表の右側の記載］",
+   "計8隊［第二次編成陸上隊の表の右側の記載］",
+   "- 27 -（ページ番号）"
+  ],
+  "sections": {
+   "統合機動部隊": [
+    {
+     "chutai": "指揮隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "消火中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "救助中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "大津市消防局",
+       "note": "※津波・大規模風水害対策車"
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": "救助先行車"
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": "救助先行車"
+      }
+     ]
+    },
+    {
+     "chutai": "救助中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": "※小型救助車"
+      }
+     ]
+    },
+    {
+     "chutai": "救急中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "後方支援中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "後方支援中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": "※支援車Ⅲ型"
+      }
+     ]
+    },
+    {
+     "chutai": "通信支援小隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "特殊装備小隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": "※重機及び重機搬送車"
+      }
+     ]
+    }
+   ],
+   "第一次編成陸上隊": [
+    {
+     "chutai": "指揮隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": {
+      "honbu": "大津市消防局",
+      "note": null
+     }
+    },
+    {
+     "chutai": "消火中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "甲賀広域行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "高島市消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": null
+    },
+    {
+     "chutai": "消火中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "彦根市消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": {
+      "honbu": "東近江行政組合消防本部",
+      "note": null
+     }
+    },
+    {
+     "chutai": "救助中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": null
+    },
+    {
+     "chutai": "救急中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "甲賀広域行政組合消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": null
+    },
+    {
+     "chutai": "救急中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "彦根市消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      }
+     ],
+     "safety_unit_honbu": {
+      "honbu": "湖南広域消防局",
+      "note": null
+     }
+    }
+   ],
+   "第二次編成陸上隊": [
+    {
+     "chutai": "指揮隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "後方支援中隊",
+     "block": "南ブロック",
+     "formed_by": [
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": "燃料補給車"
+      },
+      {
+       "honbu": "甲賀広域行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "高島市消防本部",
+       "note": null
+      }
+     ]
+    },
+    {
+     "chutai": "後方支援中隊",
+     "block": "北ブロック",
+     "formed_by": [
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "彦根市消防本部",
+       "note": null
+      },
+      {
+       "honbu": "湖北地域消防本部",
+       "note": null
+      }
+     ]
+    }
+   ],
+   "その他": [
+    {
+     "unit": "特殊装備小隊",
+     "vehicle": "はしご車",
+     "formed_by": [
+      {
+       "honbu": "大津市消防局",
+       "note": null
+      },
+      {
+       "honbu": "湖南広域消防局",
+       "note": null
+      },
+      {
+       "honbu": "東近江行政組合消防本部",
+       "note": null
+      },
+      {
+       "honbu": "彦根市消防本部",
+       "note": null
+      }
+     ]
+    }
+   ]
+  },
+  "counts": {
+   "統合機動部隊": 14,
+   "第一次編成陸上隊": 17,
+   "第二次編成陸上隊": 8,
+   "その他": 4
+  }
+ }
+}

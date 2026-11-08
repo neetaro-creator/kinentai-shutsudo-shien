@@ -1,0 +1,126 @@
+{
+ "honbu": [
+  {
+   "name": "大津市消防局",
+   "short": "大津",
+   "block": "南ブロック",
+   "block_role": "幹事",
+   "is_representative": true,
+   "is_representative_deputy": false,
+   "basis": {
+    "table": "別表第２",
+    "quote": "大津市消防局",
+    "article": "第3",
+    "paragraph": "2"
+   }
+  },
+  {
+   "name": "湖南広域消防局",
+   "short": "湖南",
+   "block": "南ブロック",
+   "block_role": "幹事代行",
+   "is_representative": false,
+   "is_representative_deputy": false,
+   "basis": {
+    "table": "別表第２",
+    "quote": "湖南広域消防局",
+    "article": "第3",
+    "paragraph": "2"
+   }
+  },
+  {
+   "name": "甲賀広域行政組合消防本部",
+   "short": "甲賀",
+   "block": "南ブロック",
+   "block_role": "構成員",
+   "is_representative": false,
+   "is_representative_deputy": false,
+   "basis": {
+    "table": "別表第２",
+    "quote": "甲賀広域行政組合消防本部",
+    "article": "第3",
+    "paragraph": "1"
+   }
+  },
+  {
+   "name": "高島市消防本部",
+   "short": "高島",
+   "block": "南ブロック",
+   "block_role": "構成員",
+   "is_representative": false,
+   "is_representative_deputy": false,
+   "basis": {
+    "table": "別表第２",
+    "quote": "高島市消防本部",
+    "article": "第3",
+    "paragraph": "1"
+   }
+  },
+  {
+   "name": "東近江行政組合消防本部",
+   "short": "東近江",
+   "block": "北ブロック",
+   "block_role": "幹事",
+   "is_representative": false,
+   "is_representative_deputy": true,
+   "basis": {
+    "table": "別表第２",
+    "quote": "東近江行政組合消防本部",
+    "article": "第3",
+    "paragraph": "2"
+   }
+  },
+  {
+   "name": "彦根市消防本部",
+   "short": "彦根",
+   "block": "北ブロック",
+   "block_role": "構成員",
+   "is_representative": false,
+   "is_representative_deputy": false,
+   "basis": {
+    "table": "別表第２",
+    "quote": "彦根市消防本部",
+    "article": "第3",
+    "paragraph": "1"
+   }
+  },
+  {
+   "name": "湖北地域消防本部",
+   "short": "湖北",
+   "block": "北ブロック",
+   "block_role": "幹事代行",
+   "is_representative": false,
+   "is_representative_deputy": false,
+   "basis": {
+    "table": "別表第２",
+    "quote": "湖北地域消防本部",
+    "article": "第3",
+    "paragraph": "2"
+   }
+  }
+ ],
+ "representative": {
+  "honbu": "大津市消防局",
+  "deputy": "東近江行政組合消防本部",
+  "basis": {
+   "article": "第2（第1項：代表消防機関、第2項：代表消防機関代行）",
+   "quote": "代表消防機関は、大津市消防局とする。"
+  }
+ },
+ "logistics_hq": {
+  "honbu": "大津市消防局",
+  "basis": {
+   "article": "第26",
+   "quote": "後方支援本部長は、大津市消防局の消防局長またはその委任を受けた者をもって充てるものとする。"
+  }
+ },
+ "unsure": [
+  "block_role は別表第２の転記にある role 欄（幹事／幹事代行）に拠った。転記は◎印を幹事、○印を幹事代行と読み替えたもので、原本の記号そのものは確認できていない。",
+  "甲賀広域行政組合消防本部・高島市消防本部・彦根市消防本部は印がなく、別表第２に「構成員」の記載もない。「構成員」は便宜上の区分で、原文にある役割名ではない。",
+  "高島市消防本部を南ブロックとしたのは、転記側が行の並びと縦書きセルの範囲から判断したため。表の読みに不確実性が残る。",
+  "代表消防機関（大津市消防局）と代表消防機関代行（東近江行政組合消防本部）は本文第2に基づく。別表第２には代表の区分の記載がないため、basis.table の quote は本部名のみで、代表・代行の根拠は representative 欄に記した。",
+  "東近江行政組合消防本部の is_representative_deputy は本文第2第2項「代表消防機関代行は、東近江行政組合消防本部とする。」に基づく。1つの quote には1項分しか入らないため、representative.basis.quote には第1項のみを引用した。",
+  "後方支援本部の設置先は第26第1項で「代表消防機関」と定められ、代表消防機関は第2第1項で大津市消防局とされている。quote には本部名を明記した第26第2項を用いた。",
+  "別表第２の連絡先情報（部署名・昼間／夜間区分）は規則により含めていない。"
+ ]
+}
