@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node test/run.mjs test/cases_oracle.json test/cases_batch_opus.json && node test/exhaustive.mjs && node test/allocation.mjs && node test/sw.mjs && node test/quake.mjs"
+    "test": "node test/run.mjs test/cases_oracle.json test/cases_batch_opus.json && node test/exhaustive.mjs && node test/allocation.mjs && node test/sw.mjs && node test/quake.mjs && node test/aphint.mjs"
   }
 }

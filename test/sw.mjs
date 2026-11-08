@@ -35,7 +35,7 @@ const run = async (type, extra = {}) => { let p; handlers[type]({ waitUntil: (x)
 stores.set('kinentai-v0-old', new Map());
 await run('install');
 const name = [...stores.keys()].find((k) => k !== 'kinentai-v0-old');
-ck(stores.get(name).size === 21, `プレキャッシュ件数 ${stores.get(name)?.size}`);
+ck(stores.get(name).size === 23, `プレキャッシュ件数 ${stores.get(name)?.size}`);
 await run('activate');
 ck(!stores.has('kinentai-v0-old'), '旧キャッシュの削除');
 const get = async (path, mode = 'cors') => {

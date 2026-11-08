@@ -197,3 +197,8 @@ window.addEventListener('afterprint', () => {
 /* --- 帯の中の表（アクションプラン等）：見出し列を読めるように --- */
 .banner table th{white-space:nowrap;width:1%;background:#fff;color:#111}
 .banner table td{background:rgba(255,255,255,.12);overflow-wrap:anywhere}
+
+/* --- アクションプランの該当ヒント --- */
+.aphint{border:3px solid #6a1b9a;background:#f8f1fb;color:#1a1a1a;border-radius:8px;padding:8px 12px;margin-top:10px}
+.aphint-item{border-top:1px dashed #6a1b9a;margin-top:6px;padding-top:6px}
+.aphint ul{margin:4px 0 8px 1.2em;padding:0}

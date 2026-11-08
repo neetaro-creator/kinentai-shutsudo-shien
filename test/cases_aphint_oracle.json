@@ -1,0 +1,1817 @@
+{
+ "cases": [
+  {
+   "id": "H1-01",
+   "note": "首都直下strong: 東京23区で震度6強（陸域・dp東京）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "6強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "shuto",
+     "level": "strong",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H1-02",
+   "note": "首都直下strong: 東京23区で震度7",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "7",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "shuto",
+     "level": "strong",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H1-03",
+   "note": "tokyo23で6弱はstrongでない。dp東京でも6強未満なのでpossibleでもない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-04",
+   "note": "tokyo23で5強は該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "5強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-05",
+   "note": "tokyo23で5弱以下は該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-06",
+   "note": "首都直下possible: general・dp東京・6強。【仕様の曖昧点】possibleのmatchedは仕様に明記がない。ここでは南海トラフB3（possibleでもmatchedに候補を入れる）に倣って[\"A1\"]とした。[]と解する余地もあるので要確認",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "shuto",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H1-07",
+   "note": "首都直下possible: general・dp東京・7（matchedの扱いはH1-06と同じ前提）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "shuto",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H1-08",
+   "note": "首都直下possible: seirei・dp東京・6強。tokyo23でなければpossibleになる（matchedの扱いはH1-06と同じ前提）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "shuto",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H1-09",
+   "note": "general・dp東京・6弱は6強未満なので該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-10",
+   "note": "東京で5強（general）は該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-11",
+   "note": "東京で5強（seirei）は該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "5強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-12",
+   "note": "東京以外（神奈川・general・6強）は首都直下に該当しない。神奈川は南海3地域・1道6県にも入らない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "神奈川",
+    "maxShindoPref": "神奈川",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-13",
+   "note": "東京以外（埼玉・seirei・7）は該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "埼玉",
+    "maxShindoPref": "埼玉",
+    "maxShindo": "7",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-14",
+   "note": "strongの条件はmaxShindoPlaceとmaxShindoだけ。dpが神奈川でもtokyo23・6強ならstrong",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "神奈川",
+    "maxShindoPref": "東京",
+    "maxShindo": "6強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "shuto",
+     "level": "strong",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H1-15",
+   "note": "tokyo23だがmaxShindoがnull。震度条件を満たさないので該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": null,
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-16",
+   "note": "general・dp東京でmaxShindoがnull。possibleにもならない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": null,
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-17",
+   "note": "actionPlan=shuto選択済みなら、tokyo23・7でも空配列",
+   "input": {
+    "actionPlan": "shuto",
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "7",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-18",
+   "note": "actionPlan=nankai選択済みなら、首都直下strong相当でも空配列",
+   "input": {
+    "actionPlan": "nankai",
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "6強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-19",
+   "note": "actionPlan=nihonkaikou選択済み。首都直下possible相当と南海B3相当（静岡）があっても空配列",
+   "input": {
+    "actionPlan": "nihonkaikou",
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "静岡"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-20",
+   "note": "海域でmaxShindoPref=東京ならdp=東京。general・6強はpossible（matchedの扱いはH1-06と同じ前提）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "東京",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "shuto",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H1-21",
+   "note": "海域でmaxShindoPref=東京・tokyo23・7はstrong",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "東京",
+    "maxShindo": "7",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "shuto",
+     "level": "strong",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H1-22",
+   "note": "海域ならepicenterPrefは使わない。epicenterPref=東京でもmaxShindoPref=神奈川ならdp=神奈川で該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "東京",
+    "maxShindoPref": "神奈川",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-23",
+   "note": "陸域ならmaxShindoPrefは使わない。maxShindoPref=東京でもepicenterPref=千葉ならdp=千葉で該当なし（千葉は1道6県だがdp条件の青森・岩手・宮城・北海道に入らない）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "千葉",
+    "maxShindoPref": "東京",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H1-24",
+   "note": "首都直下strongと南海B3（静岡＝中部のみで大津波警報、epicenterName空）の同時。順序はshuto→nankai。dp東京なので日本海溝は該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "6強",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "静岡"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "shuto",
+     "level": "strong",
+     "matched": [
+      "A1"
+     ]
+    },
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H1-25",
+   "note": "epicenterNameは首都直下に影響しない。表2と一致しない震央地名なので南海は該当にならず、shutoだけ返る",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "7",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "静岡"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "東京都２３区"
+   },
+   "expected": [
+    {
+     "key": "shuto",
+     "level": "strong",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-01",
+   "note": "南海B1: dp=静岡（中部・陸域）、震度6強、津波なし、震央地名は空。possibleでmatchedはA1",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": "静岡",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-02",
+   "note": "南海B1: dp=和歌山（近畿・海域なのでmaxShindoPrefから決まる）、震度7。震央地名は表2と完全一致",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "和歌山",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "和歌山県南方沖"
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-03",
+   "note": "南海B1: dp=高知（四国・九州・海域）、震度6強。震央地名は土佐湾で表2と一致",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "高知",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "土佐湾"
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-04",
+   "note": "南海B1の境界: dp=静岡でも震度6弱は6強未満。津波もないので該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": "静岡",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H3-05",
+   "note": "地域外の県: 大阪はrulesの近畿（兵庫・奈良・和歌山）に入らない。震度6強でも該当なし（地域をコードに直書きしていないかの確認）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": "大阪",
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H3-06",
+   "note": "地域外の県: 鹿児島は四国・九州の定義（大分・宮崎まで）に入らない。震度7でも該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "鹿児島",
+    "maxShindoPref": "鹿児島",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H3-07",
+   "note": "南海B2: 大津波警報が3地域すべてに出ている（中部=静岡・愛知・三重、近畿=和歌山、四国九州=徳島・高知）。震度は5強なのでB1は満たさずmatchedはA2のみ",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "三重",
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "静岡",
+     "愛知",
+     "三重",
+     "和歌山",
+     "徳島",
+     "高知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-08",
+   "note": "南海B3: 大津波警報は2地域（中部=静岡・愛知、近畿=和歌山）のみ。震度6弱なのでB1は満たさない。震央地名は遠州灘で一致",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "愛知",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [
+     "静岡",
+     "愛知",
+     "和歌山"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "遠州灘"
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-09",
+   "note": "南海B3: 大津波警報は1地域（四国・九州=高知・宮崎）のみ。震度は5弱以下",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "高知",
+    "maxShindo": "5弱以下",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "高知",
+     "宮崎"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "土佐湾"
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-10",
+   "note": "大津波警報が3地域の外の県（大阪・鹿児島・神奈川）だけに出ている。3地域にも1道6県にも含まれないので該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "鹿児島",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "大阪",
+     "鹿児島",
+     "神奈川"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H3-11",
+   "note": "tsunamiPrefsに内陸県（山梨・長野・奈良）だけが入っている。仕様は地域に含まれるかだけを見るので、中部と近畿の2地域でB3になる",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "長野",
+    "maxShindoPref": "長野",
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "山梨",
+     "長野",
+     "奈良"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-12",
+   "note": "複合B1+B2: dp=高知で震度7、大津波警報が3地域すべて。満たした選択肢を両方返す前提でmatchedは[A1,A2]（alternativesの順）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "高知",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [
+     "静岡",
+     "和歌山",
+     "高知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "四国沖"
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A1",
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-13",
+   "note": "複合B1+B3: dp=静岡で震度6強、大津波警報は中部（静岡）だけ",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "静岡",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "静岡"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "駿河湾"
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A1",
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-14",
+   "note": "震央地名が表2と一致しない（茨城県南部）。B1・B2の条件をそろえても南海は該当にしない。dpが静岡なので日本海溝も該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": "静岡",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "静岡",
+     "和歌山",
+     "高知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "茨城県南部"
+   },
+   "expected": []
+  },
+  {
+   "id": "H3-15",
+   "note": "震央地名の前方一致: 『奈良県北部』は表2の『奈良県』で始まるので一致。dp=奈良で震度6強なのでB1",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "奈良",
+    "maxShindoPref": "奈良",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "奈良県北部"
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-16",
+   "note": "前方一致の逆向き: 『静岡県』は表2のどの名前とも完全一致せず、どの名前でも始まらない（表の『静岡県東部』等の先頭部分にすぎない）。一致しないので該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "静岡",
+    "maxShindoPref": "静岡",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "静岡"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "静岡県"
+   },
+   "expected": []
+  },
+  {
+   "id": "H3-17",
+   "note": "dpの決め方（陸域）: epicenterSea=falseなのでdpはepicenterPrefの大阪（地域外）。maxShindoPrefの和歌山は使わないので該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "大阪",
+    "maxShindoPref": "和歌山",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H3-18",
+   "note": "dpの決め方（海域）: epicenterSea=trueなのでdpはmaxShindoPrefの兵庫（近畿）。epicenterPrefの大阪は使わない。震央地名は淡路島付近で一致",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "大阪",
+    "maxShindoPref": "兵庫",
+    "maxShindo": "6強",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "淡路島付近"
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-19",
+   "note": "両方が同時に該当: dp=宮城で震度6弱、東北（宮城・岩手）と四国（高知・徳島）に大津波警報。震央地名は空。日本海溝A1と南海B3の両方が出る",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "宮城",
+     "岩手",
+     "高知",
+     "徳島"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    },
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-20",
+   "note": "H3-19の入力で震央地名を三陸沖にする。表3には一致するので日本海溝は残る。表2には一致しないので南海は消える",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "宮城",
+     "岩手",
+     "高知",
+     "徳島"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "三陸沖"
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-21",
+   "note": "H3-19の入力で震央地名を日向灘にする。表3に一致しないので日本海溝は消える。表2には一致するので南海B3は残る",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "宮城",
+     "岩手",
+     "高知",
+     "徳島"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "日向灘"
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-22",
+   "note": "日本海溝A2と南海B2が同時に該当: dp=北海道で震度6強、北海道と3地域（静岡・和歌山・高知）に大津波警報。dpが3地域外なので南海B1は満たさない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "北海道",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "北海道",
+     "静岡",
+     "和歌山",
+     "高知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    },
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-23",
+   "note": "dp=北海道で震度6弱。日本海溝A2は6強以上が要るので満たさず、A1は対象県外。南海は三重の大津波警報でB3",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "北海道",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "北海道",
+     "三重"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-24",
+   "note": "複合（首都直下＋南海）: 東京23区で震度7なので首都直下はstrong。大津波警報が静岡・和歌山・徳島で3地域すべてなので南海B2。1道6県には津波がないので日本海溝は該当なし",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "東京",
+    "maxShindoPref": "東京",
+    "maxShindo": "7",
+    "maxShindoPlace": "tokyo23",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "静岡",
+     "和歌山",
+     "徳島"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "shuto",
+     "level": "strong",
+     "matched": [
+      "A1"
+     ]
+    },
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H3-25",
+   "note": "アクションプランが選択済み（nankai）。南海B1・B2がそろう入力でも空配列を返す",
+   "input": {
+    "actionPlan": "nankai",
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "高知",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 3,
+    "tsunamiPrefs": [
+     "静岡",
+     "和歌山",
+     "高知"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-01",
+   "note": "A1の基本形。青森・陸域、震度6弱（境界の下限）、津波は青森、震央地名は空（手入力）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "青森",
+    "maxShindoPref": "青森",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "青森"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H2-02",
+   "note": "青森で震度5強は6弱に届かない。津波が1道6県にあっても該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "青森",
+    "maxShindoPref": "青森",
+    "maxShindo": "5強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "青森"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-03",
+   "note": "岩手・海域（dpはmaxShindoPref）、震度6弱、震央地名が表3の「岩手県沖」と完全一致",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "岩手",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "岩手"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "岩手県沖"
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H2-04",
+   "note": "宮城で震度6強（6弱以上を満たす）、津波は宮城・福島、震央地名「三陸沖」が完全一致",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [
+     "宮城",
+     "福島"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "三陸沖"
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H2-05",
+   "note": "宮城で震度7でも、大津波警報がなければ（tsunamiPrefsが空）該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "宮城",
+    "maxShindoPref": "宮城",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-06",
+   "note": "宮城で震度6弱。津波が1道6県に含まれない新潟だけなので該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "宮城",
+    "maxShindoPref": "宮城",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "新潟"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-07",
+   "note": "津波が dp と別の1道6県（千葉）でもよい。観測場所が政令市（仙台）でも条件に関係しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "宮城",
+    "maxShindoPref": "宮城",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "seirei",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "千葉"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H2-08",
+   "note": "北海道で震度6弱。A2は6強以上が必要で、A1の対象県でもないので該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "北海道",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "北海道"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "十勝沖"
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-09",
+   "note": "北海道で震度6強（A2の境界の下限）、震央地名「十勝沖」が完全一致",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "北海道",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "北海道"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "十勝沖"
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H2-10",
+   "note": "北海道で震度7、津波は北海道・青森、震央地名は空。A2で possible",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "北海道",
+    "maxShindo": "7",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [
+     "北海道",
+     "青森"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H2-11",
+   "note": "北海道で震度6強でも、津波なしなら該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "北海道",
+    "maxShindoPref": "北海道",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-12",
+   "note": "北海道で震度6強、震央地名「根室半島南東沖」が完全一致（表3の別の名前）",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "北海道",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "北海道"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "根室半島南東沖"
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H2-13",
+   "note": "震央地名「茨城県沖」は表3にない。ほかの条件を満たしても該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "岩手",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "岩手"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "茨城県沖"
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-14",
+   "note": "震央地名「宮城県沖」は表3にない（表3にあるのは岩手県沖・青森県沖・三陸沖など）。該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "宮城"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "宮城県沖"
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-15",
+   "note": "前方一致。「三陸沖北部」は表3の「三陸沖」で始まるので該当にできる",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "青森",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "青森"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "三陸沖北部"
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H2-16",
+   "note": "前方一致。「釧路沖東部」は「釧路沖」で始まる。北海道で震度6強なのでA2",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "北海道",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "北海道"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "釧路沖東部"
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H2-17",
+   "note": "部分一致でも前方一致ではない。「北部三陸沖」は「三陸沖」を含むが「三陸沖」で始まらないので該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "岩手",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "岩手"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "北部三陸沖"
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-18",
+   "note": "「浦河沖」は表3の「一部浦河沖」と完全一致せず、どの名前でも始まらない。仕様どおり機械的に照合し、該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "北海道",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "北海道"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "浦河沖"
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-19",
+   "note": "海域のとき dp は maxShindoPref（秋田）。epicenterPref が岩手でも使わない。秋田は対象県でないので該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": "岩手",
+    "maxShindoPref": "秋田",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "岩手"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "岩手県沖"
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-20",
+   "note": "陸域のとき dp は epicenterPref（福島）。maxShindoPref が宮城でも使わない。福島は1道6県だがA1の対象県ではないので該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": false,
+    "epicenterPref": "福島",
+    "maxShindoPref": "宮城",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 2,
+    "tsunamiPrefs": [
+     "宮城",
+     "福島"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-21",
+   "note": "アクションプランが選択済み（actionPlan が null でない）なら、条件を満たしていても空配列",
+   "input": {
+    "actionPlan": "nihonkaikou",
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "宮城"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": true,
+    "epicenterName": "三陸沖"
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-22",
+   "note": "maxShindo が null なら震度条件を満たさない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "岩手",
+    "maxShindo": null,
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 0,
+    "tsunamiPrefs": [
+     "岩手"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  },
+  {
+   "id": "H2-23",
+   "note": "日本海溝A1と南海トラフB3が同時に出る。津波の静岡は中部だけなので、南海トラフは3地域の一部（B3）。震央地名が空なので両方とも照合しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "宮城",
+     "静岡"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    },
+    {
+     "key": "nankai",
+     "level": "possible",
+     "matched": [
+      "A2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H2-24",
+   "note": "H2-23と同じで、震央地名が「三陸沖」。表3には一致し、表2には一致しないので、南海トラフは出ない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "宮城",
+    "maxShindo": "6弱",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "宮城",
+     "静岡"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": "三陸沖"
+   },
+   "expected": [
+    {
+     "key": "nihonkaikou",
+     "level": "possible",
+     "matched": [
+      "A1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "H2-25",
+   "note": "dp が茨城（1道6県だがA1・A2の対象ではない）。震度6強・津波茨城でも該当しない",
+   "input": {
+    "actionPlan": null,
+    "epicenterSea": true,
+    "epicenterPref": null,
+    "maxShindoPref": "茨城",
+    "maxShindo": "6強",
+    "maxShindoPlace": "general",
+    "qualifyingPrefCount": 1,
+    "tsunamiPrefs": [
+     "茨城"
+    ],
+    "eruptionWarning": false,
+    "nationalDisaster": null,
+    "epicenterName": ""
+   },
+   "expected": []
+  }
+ ]
+}

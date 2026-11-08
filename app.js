@@ -3,6 +3,7 @@ import { judge } from './src/judge.js';
 import { allocation } from './src/allocation.js';
 import { mountQuakePanel } from './src/quake-ui.js';
 import { actionPlanSections } from './src/ap-view.js';
+import { apHints } from './src/ap-hint.js';
 
 const KEY_HONBU = 'kinentai.honbu';
 const KEY_CHECK = 'kinentai.check.';
@@ -37,7 +38,7 @@ let D = null;               // data
 let myHonbu = null;         // 保存された自本部
 let viewHonbu = null;       // 表示中の本部
 let showPicker = false;
-const inp = { actionPlan:'', maxShindo:'', place:'general', count:'', sea:false, epPref:'', maxPref:'', tsunami:[], eruption:false, nd:'' };
+const inp = { actionPlan:'', maxShindo:'', place:'general', count:'', sea:false, epPref:'', maxPref:'', tsunami:[], eruption:false, nd:'', epName:'' };
 let headerEl, resultsEl, formEl, quakeEl;
 let quakeData = null;      // 地震情報取り込み用の地域データ（読めなくても本体は動く）
 
@@ -56,6 +57,7 @@ async function init(){
     if (!Array.isArray(D.honbu.honbu)) throw new Error('honbu.json の形式が不正です');
     // アクションプランの詳細は任意（読めなくても通常の判定は動く）
     try { D.action_plans = await loadJson('action_plans.json'); } catch (e) { D.action_plans = null; }
+    try { D.ap_rules = await loadJson('ap_rules.json'); } catch (e) { D.ap_rules = null; }
   } catch (e){
     app.replaceChildren(el('div',{class:'error',role:'alert'},
       'データの読み込みに失敗しました。画面を表示できません。',
@@ -131,7 +133,7 @@ function radioGroup(legend, name, opts, get, set){
 }
 function prefSelect(id,label,key){
   return el('label',{id:id+'-wrap'},label+' ',
-    el('select',{id,onchange:e=>{inp[key]=e.target.value;update();}},
+    el('select',{id,onchange:e=>{inp[key]=e.target.value;inp.epName='';update();}},
       el('option',{value:''},'（未選択）'),
       PREFS.map(p=>el('option',{value:p,selected:inp[key]===p},p))));
 }
@@ -149,7 +151,7 @@ function buildForm(){
     el('label',null,'震度6弱以上（政令市・東京特別区は5強以上）を観測した都道府県の数 ',
       el('input',{type:'number',min:'0',step:'1',inputmode:'numeric',value:inp.count,style:'width:6em',oninput:e=>{inp.count=e.target.value;update();}})),
     el('fieldset',null,el('legend',null,'震央'),
-      el('label',{class:'opt row'},el('input',{type:'checkbox',style:'width:22px;height:22px',checked:inp.sea,onchange:e=>{inp.sea=e.target.checked;sync();update();}}),' 震央が海域'),
+      el('label',{class:'opt row'},el('input',{type:'checkbox',style:'width:22px;height:22px',checked:inp.sea,onchange:e=>{inp.sea=e.target.checked;inp.epName='';sync();update();}}),' 震央が海域'),
       epWrap, mxWrap),
     el('fieldset',null,el('legend',null,'大津波警報が発表された都道府県（複数選択）'),
       el('details',{open:inp.tsunami.length>0},el('summary',null,'都道府県を選ぶ'),
@@ -179,6 +181,7 @@ function applyQuake(input){
   inp.count = String(input.qualifyingPrefCount || 0);
   inp.sea = !!input.epicenterSea;
   inp.epPref = input.epicenterPref || '';
+  inp.epName = input.epicenterName || '';
   inp.maxPref = input.maxShindoPref || '';
   inp.tsunami = (input.tsunamiPrefs || []).slice();
   const f = buildForm();
@@ -192,6 +195,7 @@ function buildInput(){
     actionPlan: inp.actionPlan || null,
     epicenterSea: !!inp.sea,
     epicenterPref: inp.epPref || null,
+    epicenterName: inp.epName || null,
     maxShindoPref: inp.maxPref || null,
     maxShindo: inp.maxShindo || null,
     maxShindoPlace: inp.place || 'general',
@@ -239,7 +243,7 @@ function renderResults(){
     return;
   }
   const res = safeJudge();
-  kids.push(el('section',{class:'span2'},el('h2',null,'(1) 判定'), bannerEl(res), roleBox(h)));
+  kids.push(el('section',{class:'span2'},el('h2',null,'(1) 判定'), bannerEl(res), apHintEl(res), roleBox(h)));
   if (res.actionPlan && D.action_plans && D.action_plans.plans && D.action_plans.plans[res.actionPlan.key]){
     kids.push(apSection(res, h));
   } else {
@@ -249,6 +253,22 @@ function renderResults(){
   kids.push(formsSection(h));
   kids.push(basisSection(res));
   resultsEl.replaceChildren(...kids.filter(Boolean));
+}
+
+// アクションプランに該当する可能性の注意（確定ではない。適用を決めるのは消防庁長官）
+function apHintEl(res){
+  if (res.actionPlan || !D.ap_rules) return null;
+  let hints = [];
+  try { hints = apHints(buildInput(), D.ap_rules); } catch (e) { return null; }
+  if (!hints.length) return null;
+  return el('div',{class:'aphint',role:'note'},
+    el('p',null,el('strong',null,'⚠ アクションプランに該当する可能性があります（確定ではありません）')),
+    hints.map(x=>el('div',{class:'aphint-item'},
+      el('p',null,el('strong',null,x.name), x.level==='strong' ? '：入力の範囲では条件を満たします' : '：条件の一部が入力では確認できません'),
+      (x.reasons&&x.reasons.length) ? el('ul',null,x.reasons.map(t=>el('li',null,t))) : null,
+      (x.checks&&x.checks.length) ? el('p',{class:'note'},'確認すること:') : null,
+      (x.checks&&x.checks.length) ? el('ul',null,x.checks.map(t=>el('li',null,t))) : null)),
+    el('p',null,'消防庁の連絡を確認し、該当するときは上の「アクションプラン該当」を選んでください。ここに当たらなくても、消防庁長官の判断で適用されることがあります。'));
 }
 
 function bannerEl(res){

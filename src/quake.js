@@ -286,6 +286,7 @@ export function eventToInput(event, tsunamiRecord, data) {
     actionPlan: null,
     epicenterSea: false,
     epicenterPref: null,
+    epicenterName: null, // 震央地名（アクションプランの該当ヒントに使う）
     maxShindoPref: null,
     maxShindo: null,
     maxShindoPlace: "general",
@@ -370,6 +371,7 @@ function applyEvent(event, cities, input, notes, warnings) {
   const maxPoints = maxScale >= 10 ? points.filter((p) => scaleOf(p) === maxScale) : [];
 
   // 震央が海域か・管轄都道府県
+  input.epicenterName = name || null;
   if (!name) {
     warnings.push("震央地名が不明（震度速報のみ等）。震央が海域か、震央管轄都道府県を手入力で確認");
   } else {
