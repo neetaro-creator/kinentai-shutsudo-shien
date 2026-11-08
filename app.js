@@ -39,7 +39,8 @@ let myHonbu = null;         // 保存された自本部
 let viewHonbu = null;       // 表示中の本部
 let showPicker = false;
 const inp = { actionPlan:'', maxShindo:'', place:'', count:'', sea:false, epPref:'', maxPref:'', tsunami:[], eruption:false, nd:'', epName:'' };
-let headerEl, resultsEl, formEl, quakeEl;
+let headerEl, resultsEl, formEl, quakeEl, judgeEl, sumbarEl, liveEl;
+let lastLive = '';         // ライブ領域に最後に入れた文（同じ文なら更新しない）
 let quakeData = null;      // 地震情報取り込み用の地域データ（読めなくても本体は動く）
 let updateReady = false;   // 新しい版が使える状態になったか（通知帯を出す）
 let clearedNotice = 0;     // 起動時に消した古いチェックの件数（手順の節に一度だけ知らせる）
@@ -115,16 +116,22 @@ function verifEl(v){
   const join = a => Array.isArray(a) ? a.filter(x => x != null && x !== '').map(String).join('・') : '';
   const ok = join(v.verified), ng = join(v.unverified);
   if (!ok && !ng) return null;
+  // 1行にまとめ、照合者・注記は折りたたみに入れる（印刷では開いて出る）
   let t = '原本との照合: ';
-  if (ok) t += ok + 'は人が原本と照合済み' + (v.verified_by ? '（' + v.verified_by + '）' : '') + '。';
-  if (ng) t += ng + 'は未照合' + (v.unverified_note ? '（' + v.unverified_note + '）' : '') + '。';
-  return el('div',{class:'verif'}, t);
+  if (ok) t += ok + 'は人が照合済み';
+  if (ok && ng) t += '／';
+  if (ng) t += ng + 'は未照合';
+  const det = (v.verified_by || v.unverified_note) ? el('details',null, el('summary',null,'照合の詳細'),
+    v.verified_by ? el('p',null,'照合済み分: '+String(v.verified_by)) : null,
+    v.unverified_note ? el('p',null,'未照合分: '+String(v.unverified_note)) : null) : null;
+  return el('div',{class:'verif'}, el('div',null,t), det);
 }
 // 原本と未照合の節に出す注記（meta.verification.unverified が空なら出さない）
 function unverifiedNote(){
   const v = D && D.meta && D.meta.verification;
   if (!v || !Array.isArray(v.unverified) || !v.unverified.length) return null;
-  return el('p',{class:'note unverified'},'この節は原本との人の照合が未了です。原本で確認してください。');
+  // 節の見出し h2 の横に付ける小さなバッジ
+  return el('span',{class:'badge-unverified',title:'この節は原本との人の照合が未了です。原本で確認してください。'},'原本未照合');
 }
 function versionEl(){
   const m = D.meta || {};
@@ -141,12 +148,64 @@ function buildMain(){
   if (!viewHonbu) viewHonbu = myHonbu;
   headerEl = el('div');
   resultsEl = el('main',{'aria-label':'判定結果'});
+  // 判定は入力の横（狭い画面では入力の下）に置き、最初の画面で見えるようにする
+  judgeEl = el('div',{id:'judge',class:'judgecol',tabindex:'-1',role:'region','aria-label':'判定'});
   formEl = buildForm();
   quakeEl = el('div',{class:'quake-wrap no-print'});
   mountQuakePanel(quakeEl, { loadData: loadQuakeData, apply: applyQuake });
-  app.replaceChildren(disclaimerEl(), headerEl, versionEl(), quakeEl, formEl, resultsEl);
+  // 狭い画面用の要約バー（押すと判定へ移動）
+  sumbarEl = el('div',{class:'sumbar no-print lv-wait',onclick:e=>{ e.preventDefault(); goTo('judge'); }});
+  // 判定が変わったときだけ読み上げるライブ領域
+  liveEl = el('div',{id:'live',class:'sr-only',role:'status','aria-live':'polite'});
+  lastLive = '';
+  const nav = el('nav',{class:'pagenav no-print','aria-label':'ページ内の移動'},
+    [['judge','判定'],['sec-alloc','割当'],['sec-steps','手順'],['sec-forms','様式'],['sec-basis','根拠']].map(([id,t])=>
+      el('a',{href:'#'+id,onclick:e=>{ e.preventDefault(); goTo(id); }},t)));
+  app.replaceChildren(disclaimerEl(), headerEl, nav, sumbarEl, versionEl(),
+    el('div',{class:'workspace'}, el('div',{class:'inputs'}, quakeEl, formEl), judgeEl),
+    resultsEl, liveEl);
   renderHeader();
   renderResults();
+}
+
+// ページ内の移動（行き先が無ければ何もしない）
+function goTo(id){
+  const t = document.getElementById(id);
+  if (!t) return;
+  t.scrollIntoView({ block:'start' });
+  try { t.focus({ preventScroll:true }); } catch { t.focus(); }
+}
+// 要約バーとライブ領域を更新する（判定のたびに呼ぶ）
+function updateSummary(levelCls, icon, title){
+  if (sumbarEl){
+    sumbarEl.className = 'sumbar no-print ' + levelCls;
+    sumbarEl.replaceChildren(el('a',{href:'#judge',class:'sumlink'},
+      el('span',{class:'sumicon','aria-hidden':'true'},icon), title,
+      el('span',{class:'sr-only'},'（判定へ移動）')));
+  }
+  const t = '判定: ' + String(title).replace(/（[^）]*）$/,'').replace('：',' ');
+  if (liveEl && lastLive !== t){ liveEl.textContent = t; lastLive = t; }
+}
+// 印刷用: 判定に使った入力条件（画面では隠す）
+function printInputsEl(){
+  const AP = { shuto:'首都直下', nankai:'南海トラフ', nihonkaikou:'日本海溝・千島海溝' };
+  const PL = { general:'それ以外', seirei:'政令市等（区は市として扱う）', tokyo23:'東京都特別区' };
+  const ep = (inp.sea ? '海域（最大震度を観測した都道府県: '+(inp.maxPref||'未選択')+'）'
+                      : '陸域（震央管轄都道府県: '+(inp.epPref||'未選択')+'）') + (inp.epName ? '　'+inp.epName : '');
+  const rows = [
+    ['表示本部', viewHonbu + (viewHonbu !== myHonbu ? '（自本部は '+myHonbu+'）' : '')],
+    ['アクションプラン', AP[inp.actionPlan] || '選ばない（通常の判定）'],
+    ['最大震度', inp.maxShindo || '未入力'],
+    ['観測場所', PL[inp.place] || '未選択'],
+    ['震度6弱以上（政令市・東京特別区は5強以上）を観測した都道府県の数', inp.count === '' ? '未入力' : String(inp.count)],
+    ['震央', ep],
+    ['大津波警報の都道府県', inp.tsunami.length ? inp.tsunami.join('、') : 'なし'],
+    ['噴火警報（居住区域）', inp.eruption ? '発表あり' : 'なし'],
+    ['国家的非常災害', inp.nd === '' ? '不明' : inp.nd === 'true' ? 'はい' : 'いいえ']
+  ];
+  return el('section',{class:'print-inputs'}, el('h3',null,'判定に使った入力条件'),
+    el('table',null, el('thead',null,el('tr',null,el('th',null,'項目'),el('th',null,'値'))),
+      el('tbody',null, rows.map(r=>el('tr',null,el('th',null,r[0]),el('td',null,r[1]))))));
 }
 
 function renderHeader(){
@@ -156,7 +215,7 @@ function renderHeader(){
   }}, D.honbu.honbu.map(h=>el('option',{value:h.name,selected:h.name===viewHonbu},h.name)));
   headerEl.replaceChildren(...[
     el('div',{class:'honbubar'},
-      el('div',{class:'name'},'自本部: ', myHonbu),
+      el('h1',{class:'name'},'自本部: ', myHonbu),
       el('button',{type:'button',class:'no-print',onclick:showSelect},'本部を変更'),
       el('button',{type:'button',class:'no-print','aria-expanded':String(showPicker),onclick:()=>{showPicker=!showPicker;renderHeader();}},'他本部を見る'),
       showPicker ? el('label',{class:'no-print'},'表示する本部 ',sel) : null,
@@ -191,7 +250,7 @@ function buildForm(){
   const f = el('form',{class:'card no-print span2',onsubmit:e=>e.preventDefault(),style:'margin:12px'},
     el('h2',{style:'margin:0'},'状況入力'),
     el('p',{class:'note'},'入力すると自動で判定します。'),
-    radioGroup('アクションプラン該当','ap',[['','なし'],['shuto','首都直下'],['nankai','南海トラフ'],['nihonkaikou','日本海溝・千島海溝']],()=>inp.actionPlan,v=>inp.actionPlan=v),
+    radioGroup('アクションプラン該当','ap',[['','選ばない（通常の判定）'],['shuto','首都直下'],['nankai','南海トラフ'],['nihonkaikou','日本海溝・千島海溝']],()=>inp.actionPlan,v=>inp.actionPlan=v),
     radioGroup('最大震度','shindo',[['','未入力'],['7','7'],['6強','6強'],['6弱','6弱'],['5強','5強'],['5弱以下','5弱以下']],()=>inp.maxShindo,v=>inp.maxShindo=v),
     placeGroup(),
     el('label',null,'震度6弱以上（政令市・東京特別区は5強以上）を観測した都道府県の数 ',
@@ -290,8 +349,8 @@ const REASON_MSG = {
   'unknown-intensity':'最大震度を選んでください（津波だけの場合も、観測した最大震度、なければ「5弱以下」を選択）。'
 };
 
-// アクションプラン該当時の帯（色は青のまま、アイコンも同じ。入力不足とは区別する）
-const LV_AP = { cls:LV.indeterminate.cls, icon:LV.indeterminate.icon, title:'青：アクションプラン該当（消防庁の指示待ち）', body:'入力不足ではありません。別表の判定は使わず、消防庁からの連絡・指示に従ってください。' };
+// アクションプラン該当時の帯（色は青のまま。アイコン「！」と二重枠で入力不足と区別する）
+const LV_AP = { cls:LV.indeterminate.cls, icon:'！', title:'青：アクションプラン該当（消防庁の指示待ち）', body:'消防庁からの連絡・指示に従ってください。別表の判定は使いません。' };
 const NO_ALLOC_MSG = '県大隊は出動する判定ですが、この本部に割当（編成消防本部・安全管理部隊としての記載）はありません。待機し、情報収集と消防庁・県の連絡を確認してください。';
 // 橙（出動準備）の本文: 表示中の本部と代表消防機関・代行の関係で組み立てる
 function prepareBody(){
@@ -313,7 +372,9 @@ function honbuInfo(){ return D.honbu.honbu.find(h=>h.name===viewHonbu) || {name:
 function renderResults(){
   try { renderResultsInner(); }
   catch (e){
-    resultsEl.replaceChildren(el('section',{class:'span2'},el('h2',null,'(1) 判定'),
+    resultsEl.replaceChildren();
+    updateSummary('lv-indeterminate','？','青：表示エラー・要確認');
+    judgeEl.replaceChildren(el('section',null,el('h2',null,'(1) 判定'),
       el('div',{class:'banner lv-indeterminate',role:'alert'},
         el('div',{class:'big'},el('span',{class:'icon','aria-hidden':'true'},'？'),'青：表示エラー・要確認'),
         el('p',null,'判定の表示に失敗しました。この画面の判定は使わず、入力を見直し、消防庁・県の連絡を確認してください。'),
@@ -323,18 +384,21 @@ function renderResults(){
 function renderResultsInner(){
   const h = honbuInfo();
   const kids = [];
+  // (1) 判定は judgeEl に、残りの節は resultsEl に入れる
   if (isWaiting()){
-    kids.push(el('section',{class:'span2'},el('h2',null,'(1) 判定'),
-      el('div',{class:'banner lv-wait','aria-live':'polite'},
-        el('div',{class:'big'},el('span',{class:'icon'},'…'),'入力待ち'),
-        el('p',null,'上の「状況入力」で最大震度などを入れると、'+viewHonbu+' の対応区分を表示します。'))));
-    kids.push(roleBox(h) && el('div',{class:'span2'},roleBox(h)));
+    judgeEl.replaceChildren(el('section',null,el('h2',null,'(1) 判定'), printInputsEl(),
+      el('div',{class:'banner lv-wait'},
+        el('div',{class:'big'},el('span',{class:'icon','aria-hidden':'true'},'…'),'入力待ち'),
+        el('p',null,'「状況入力」で最大震度などを入れると、'+viewHonbu+' の対応区分を表示します。')),
+      roleBox(h)));
     kids.push(formsSection(h), basisSection(null));
     resultsEl.replaceChildren(...kids.filter(Boolean));
+    updateSummary('lv-wait','…','入力待ち');
     return;
   }
   const res = safeJudge();
-  kids.push(el('section',{class:'span2'},el('h2',null,'(1) 判定'), bannerEl(res), noAllocNote(res), apHintEl(res), roleBox(h)));
+  const lvi = bannerLevel(res);
+  judgeEl.replaceChildren(el('section',null,el('h2',null,'(1) 判定'), printInputsEl(), bannerEl(res), noAllocNote(res), apHintEl(res), roleBox(h)));
   if (res.actionPlan && D.action_plans && D.action_plans.plans && D.action_plans.plans[res.actionPlan.key]){
     kids.push(apSection(res, h));
   } else {
@@ -344,6 +408,7 @@ function renderResultsInner(){
   kids.push(formsSection(h));
   kids.push(basisSection(res));
   resultsEl.replaceChildren(...kids.filter(Boolean));
+  updateSummary(lvi.cls, lvi.lv.icon, lvi.lv.title);
 }
 
 // アクションプランに該当する可能性の注意（確定ではない。適用を決めるのは消防庁長官）
@@ -362,11 +427,17 @@ function apHintEl(res){
     el('p',null,'消防庁の連絡を確認し、該当するときは上の「アクションプラン該当」を選んでください。ここに当たらなくても、消防庁長官の判断で適用されることがあります。'));
 }
 
+// 帯の色・アイコン・見出しを決める（要約バーと共通）
+function bannerLevel(res){
+  const reasons = Array.isArray(res.reasons) ? res.reasons : [];
+  const isAP = !!res.actionPlan || reasons.includes('action-plan');
+  const lv = isAP ? LV_AP : (LV[res.level] || LV.indeterminate);
+  return { isAP, lv, cls: lv.cls + (isAP ? ' lv-actionplan' : '') };
+}
 function bannerEl(res){
   const reasons = Array.isArray(res.reasons) ? res.reasons : [];
   // アクションプラン該当は入力不足と区別して示す（色は青のまま）
-  const isAP = !!res.actionPlan || reasons.includes('action-plan');
-  const lv = isAP ? LV_AP : (LV[res.level] || LV.indeterminate);
+  const { isAP, lv, cls } = bannerLevel(res);
   // 橙の本文は代表消防機関のデータから組み立てる
   const body = (!isAP && res.level === 'prepare') ? prepareBody() : lv.body;
   const parts = [];
@@ -397,7 +468,7 @@ function bannerEl(res){
   }
   if (res._error) parts.push(el('p',null,'判定中にエラー: '+res._error));
   const u = res.units;
-  return el('div',{class:'banner '+lv.cls,'aria-live':'polite',role:'status'},
+  return el('div',{class:'banner '+cls},
     el('div',{class:'big'},el('span',{class:'icon','aria-hidden':'true'},lv.icon),lv.title),
     el('p',null,body),
     u ? el('p',{class:'note'},`統合機動部隊: ${u.gokan}　／　大隊・安全管理部隊: ${u.taitai}`) : null,
@@ -432,13 +503,28 @@ function apSection(res, h){
     gokan = allocSection({ level:'rapid', units:{ gokan:'迅速出動', taitai:'なし' } }, true);
     const h2 = gokan.querySelector('h2');
     if (h2) h2.replaceWith(el('h3',null,'統合機動部隊の割当（別表9-1。参考）'));
+    // 参考表示なのでページ内移動の行き先にはしない
+    gokan.removeAttribute('id'); gokan.removeAttribute('tabindex');
   }
-  const wrap = el('div',{class:'span2'}, unverifiedNote());
+  const wrap = el('div',{class:'span2'});
   try { wrap.append(actionPlanSections(key, D.action_plans, h, { gokanSection: gokan, isBattalionChiefHonbu: chief })); }
   catch (e){ wrap.append(el('p',{class:'error'},'アクションプランの表示でエラー: '+String(e&&e.message||e))); }
   // 見出しに通し番号を付ける（判定=(1)、様式=(4)、根拠=(5) に合わせる）
   const nums = [['アクションプランでの滋賀県大隊の扱い','(2) '],['アクションプランの流れと自本部の動き','(3) ']];
   wrap.querySelectorAll('h2').forEach(h=>{ for (const [t,n] of nums) if (h.textContent.trim()===t) h.textContent = n+t; });
+  // 未照合のバッジは番号付けの後で最初の見出しに付ける
+  const hs = wrap.querySelectorAll('h2');
+  const badge = unverifiedNote();
+  if (badge){
+    if (hs[0]) hs[0].append(' ', badge);
+    else wrap.prepend(el('p',{class:'note unverified'},'原本との照合は未了'));
+  }
+  // ページ内移動の行き先（(2)(3) の節）
+  const p1 = hs[0] && hs[0].parentElement, p2 = hs[1] && hs[1].parentElement;
+  if (p1 && p1 !== wrap && p1 !== p2){ p1.id = 'sec-alloc'; p1.tabIndex = -1; }
+  else if (hs[0]){ hs[0].id = 'sec-alloc'; hs[0].tabIndex = -1; }
+  if (p2 && p2 !== wrap && p2 !== p1){ p2.id = 'sec-steps'; p2.tabIndex = -1; }
+  else if (hs[1]){ hs[1].id = 'sec-steps'; hs[1].tabIndex = -1; }
   return wrap;
 }
 
@@ -463,7 +549,7 @@ function noAllocNote(res){
 }
 // ref: アクションプランの節で参考（統合機動部隊）として使うとき true
 function allocSection(res, ref){
-  const sec = el('section',null,el('h2',null,'(2) 自本部の割当隊'));
+  const sec = el('section',{id:'sec-alloc',tabindex:'-1'},el('h2',null,'(2) 自本部の割当隊'));
   if (res.level !== 'rapid' && res.level !== 'prepare'){
     sec.append(el('p',null,'割当なし。'+(res.level==='indeterminate'?'判定が確定していないため、割当を出せません。':'今回の判定では出動準備・出動の対象となっていません。')));
     return sec;
@@ -517,9 +603,10 @@ function scopeMatch(scope,h){
     default: return 'ref';
   }
 }
-function basisEl(b){
+// label: 読み上げ用に summary へ添える説明（手順の内容の先頭30字）
+function basisEl(b, label){
   if (!b) return null;
-  return el('details',null,el('summary',null,'根拠'),
+  return el('details',null,el('summary',null,'根拠', label ? el('span',{class:'sr-only'},'（'+String(label).slice(0,30)+'）') : null),
     el('div',null,`${b.article?'第'.length&&String(b.article).startsWith('第')?b.article:b.article:''}${b.paragraph?' 第'+b.paragraph+'項':''}`),
     b.quote ? el('blockquote',null,b.quote) : null);
 }
@@ -536,11 +623,11 @@ function stepEl(s,faded,ck){
       el('div',{class:'act'},s.action||''),
       (s.actor&&s.actor.text) ? el('div',{class:'when'},'担当: '+s.actor.text) : null,
       (s.forms&&s.forms.length) ? el('div',{class:'forms'},'様式: '+s.forms.join('、')) : null,
-      basisEl(s.basis)));
+      basisEl(s.basis, s.action)));
   return wrap;
 }
 function stepsSection(res,h){
-  const sec = el('section',null,el('h2',null,'(3) 手順チェックリスト'), unverifiedNote());
+  const sec = el('section',{id:'sec-steps',tabindex:'-1'},el('h2',null,'(3) 手順チェックリスト', unverifiedNote()));
   const ids = res.level==='rapid' ? ['rapid','dispatch'] : res.level==='prepare' ? ['prepare','dispatch'] : [];
   if (!ids.length){
     sec.append(el('p',null,'法令上の手順はなし。'));
@@ -550,10 +637,6 @@ function stepsSection(res,h){
   const ck = { prefix: KEY_CHECK + h.name + '.' + sig + '.', sig, disabled: viewHonbu !== myHonbu };
   if (clearedNotice){ sec.append(el('p',{class:'note'},'前回のチェックを消しました。')); clearedNotice = 0; }
   if (ck.disabled) sec.append(el('p',{class:'note'},'他本部の表示中はチェックできません。'));
-  // 現在の本部・事案のチェックだけを消す
-  sec.append(el('button',{type:'button',class:'no-print',disabled:ck.disabled,onclick:()=>{
-    store.keys(ck.prefix).forEach(k=>store.del(k)); renderResults();
-  }},'チェックを全て外す'));
   const refs = [];
   for (const id of ids){
     const ph = (D.procedure.phases||[]).find(p=>p.id===id);
@@ -564,7 +647,7 @@ function stepsSection(res,h){
       const m = scopeMatch(s.actor&&s.actor.scope,h);
       if (m==='mine') mine.push(s); else if (m==='ref') refs.push({ph,s});
     }
-    sec.append(el('h3',null,ph.label||ph.id));
+    sec.append(el('h3',null,'手順：'+(ph.label||ph.id)));
     if (!mine.length) sec.append(el('p',{class:'note'},'この段階で '+h.name+' が行う手順はありません。'));
     mine.forEach(s=>sec.append(stepEl(s,false,ck)));
   }
@@ -572,6 +655,11 @@ function stepsSection(res,h){
     sec.append(el('details',null,el('summary',null,'県・消防庁の動き（参考）'+refs.length+'件'),
       refs.map(({ph,s})=>el('div',null,el('div',{class:'note'},'【'+(ph.label||ph.id)+'】'),stepEl(s,true,ck)))));
   }
+  // 現在の本部・事案のチェックだけを消す（確認してから）
+  sec.append(el('button',{type:'button',class:'no-print clearchecks',disabled:ck.disabled,onclick:()=>{
+    if (!window.confirm('この本部・事案のチェックをすべて外します。よろしいですか？')) return;
+    store.keys(ck.prefix).forEach(k=>store.del(k)); renderResults();
+  }},'チェックを全て外す'));
   return sec;
 }
 
@@ -585,7 +673,7 @@ function formMine(f,h){
   return false;
 }
 function formsSection(h){
-  const sec = el('section',null,el('h2',null,'(4) 様式'), unverifiedNote());
+  const sec = el('section',{id:'sec-forms',tabindex:'-1'},el('h2',null,'(4) 様式', unverifiedNote()));
   const list = (D.forms && D.forms.forms) || [];
   sec.append(el('p',{class:'note'},'様式の本文は計画の様式ページ（PDF p.35〜39）を参照。'));
   if (!list.length) sec.append(el('p',null,'様式データがありません。'));
@@ -600,7 +688,7 @@ function formsSection(h){
       el('div',null,'提出先: '+(f.destination||'')),
       f.timing ? el('div',null,'時期: '+f.timing) : null,
       f.related_article ? el('div',{class:'note'},'関連条文: '+f.related_article) : null,
-      b ? el('details',null,el('summary',null,'根拠'),
+      b ? el('details',null,el('summary',null,'根拠',el('span',{class:'sr-only'},'（'+(f.name||f.id||'')+'）')),
         el('div',null,(b.article||'')+(b.paragraph?' 第'+b.paragraph+'項':'')),
         b.quote?el('blockquote',null,b.quote):null) : null));
   }
@@ -609,7 +697,7 @@ function formsSection(h){
 
 /* ---------- (5) 根拠 ---------- */
 function basisSection(res){
-  const sec = el('section',null,el('h2',null,'(5) 根拠条文'));
+  const sec = el('section',{id:'sec-basis',tabindex:'-1'},el('h2',null,'(5) 根拠条文'));
   const basis = res && Array.isArray(res.basis) ? res.basis : [];
   if (basis.length) sec.append(el('ul',null,basis.map(b=>el('li',null,typeof b==='string'?b:JSON.stringify(b)))));
   else sec.append(el('p',{class:'note'},'判定を行うと、判定の根拠がここに表示されます。'));
