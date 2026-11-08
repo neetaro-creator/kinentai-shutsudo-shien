@@ -264,6 +264,15 @@ function bannerEl(res){
     if (REASON_MSG[r]) parts.push(el('p',null,'▶ '+REASON_MSG[r]));
     else if (!['action-plan','below-threshold-5strong'].includes(r) && res.level==='indeterminate') parts.push(el('p',{class:'note'},'理由コード: '+r));
   }
+  // 区分には該当するが滋賀県の隊は対象外のとき、理由（どの表のどこで外れたか）を示す
+  if (res.level === 'info' && Array.isArray(res.events) && res.events.length){
+    const GL = { first:'第１次都道府県大隊', prep:'出動準備都道府県大隊' };
+    parts.push(el('p',{class:'note'},el('strong',null,'対象外の理由（別表第7）')));
+    parts.push(el('ul',null,res.events.map(ev=>el('li',null,
+      `区分${ev.kubun}・${ev.scope}・${ev.pref||'（都道府県未定）'}` +
+      (ev.group ? `（${GL[ev.group]}）: この組み合わせでは、滋賀県の統合機動部隊・大隊とも「なし」（別表第7で斜線）。`
+                : ': 別表第7の対象都道府県（第１次・出動準備都道府県大隊）に含まれないため、滋賀県の隊は対象外。')))));
+  }
   if (res._error) parts.push(el('p',null,'判定中にエラー: '+res._error));
   const u = res.units;
   return el('div',{class:'banner '+lv.cls,'aria-live':'polite',role:'status'},
