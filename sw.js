@@ -4,7 +4,7 @@
  * data/*.json はネットワーク優先で取得し直すため、計画の改正だけなら上げなくてもよいが、
  * 初回インストール時の内容を更新したいときは上げる。
  */
-const CACHE_VERSION = 'v2-r8-08';
+const CACHE_VERSION = 'v3-r8-08';
 const CACHE_PREFIX = 'kinentai-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 
