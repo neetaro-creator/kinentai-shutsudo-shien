@@ -3,7 +3,9 @@
 // P2P地震情報 JSON API v2 の履歴から、状況入力（F2）の項目を作る。
 // fetch 以外に外部への副作用はない。
 
-const URL_551 = "https://api.p2pquake.net/v2/history?codes=551&limit=100";
+// 地震情報の取得件数の上限（これに達したら古い地震が欠けている可能性がある）
+const LIMIT_551 = 100;
+const URL_551 = `https://api.p2pquake.net/v2/history?codes=551&limit=${LIMIT_551}`;
 const URL_552 = "https://api.p2pquake.net/v2/history?codes=552&limit=20";
 
 // 都道府県（「県・府・都」なしの表記）。都道府県名の五十音順（読みの順）に並べる。
@@ -474,6 +476,8 @@ function quakeError(message) {
  * P2P地震情報から地震情報と津波予報を取得する。
  * タイムアウトや失敗は日本語メッセージの例外として投げる。
  * 津波予報が取れないまま「大津波警報なし」と誤認させないよう、どちらの失敗も例外にする。
+ * 戻り値: { events, tsunami（最新1件か null）, tsunamiAll（発表時刻の新しい順の配列）,
+ *          count551（取得した地震情報の件数）, limit551（取得件数の上限）, fetchedAt }
  */
 export async function fetchQuakeData(fetchImpl = globalThis.fetch, { timeoutMs = 8000 } = {}) {
   if (typeof fetchImpl !== "function") {
@@ -521,15 +525,24 @@ export async function fetchQuakeData(fetchImpl = globalThis.fetch, { timeoutMs =
 
     const events = groupEvents(r551);
 
-    // 津波予報は発表時刻が最も新しい1件
-    let tsunami = null;
-    for (const rec of r552) {
-      if (!rec || typeof rec !== "object") continue;
-      if (rec.code !== undefined && rec.code !== 552) continue;
-      if (!tsunami || issueTimeOf(rec) > issueTimeOf(tsunami)) tsunami = rec;
-    }
+    // 津波予報: 正しい形のものを発表時刻の新しい順に並べる（同時刻は元の順を保つ）。tsunami はその最新1件
+    const tsunamiAll = r552
+      .filter((rec) => rec && typeof rec === "object" && (rec.code === undefined || rec.code === 552))
+      .sort((a, b) => {
+        const ta = issueTimeOf(a);
+        const tb = issueTimeOf(b);
+        return ta < tb ? 1 : ta > tb ? -1 : 0;
+      });
+    const tsunami = tsunamiAll.length > 0 ? tsunamiAll[0] : null;
 
-    return { events, tsunami, fetchedAt: new Date().toISOString() };
+    return {
+      events,
+      tsunami,
+      tsunamiAll,
+      count551: r551.length,
+      limit551: LIMIT_551,
+      fetchedAt: new Date().toISOString(),
+    };
   } catch (e) {
     controller.abort();
     throw toJaError(e);

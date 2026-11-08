@@ -17,8 +17,9 @@ const caches = {
   async keys() { return [...stores.keys()]; },
   async delete(n) { return stores.delete(n); },
 };
-let online = true, version = 'A';
+let online = true, version = 'A', hang = false;
 async function netFetch(r) {
+  if (hang) return new Promise(() => {}); // 応答が返らない（電波が弱い）状態
   if (!online) throw new TypeError('offline');
   const u = new URL(keyOf(r));
   const res = new Response(`${u.pathname}@${version}`, { status: 200 });
@@ -29,7 +30,7 @@ const handlers = {};
 const self = { location: new URL(ORIGIN + 'sw.js'), addEventListener: (t, f) => (handlers[t] = f), skipWaiting: async () => {}, clients: { claim: async () => {} } };
 // 実際のSWと同様、相対URLはSWの場所を基準に解決する
 class SWRequest extends Request { constructor(u, o) { super(typeof u === 'string' ? new URL(u, ORIGIN).href : u, o); } }
-vm.runInNewContext(code, { self, caches, fetch: netFetch, Request: SWRequest, Response, URL, Promise, console });
+vm.runInNewContext(code, { self, caches, fetch: netFetch, Request: SWRequest, Response, setTimeout, clearTimeout, URL, Promise, console });
 let bad = 0; const ck = (ok, m) => { if (!ok) { bad++; console.log('NG', m); } };
 const run = async (type, extra = {}) => { let p; handlers[type]({ waitUntil: (x) => (p = x), respondWith: (x) => (p = x), ...extra }); return p; };
 stores.set('kinentai-v0-old', new Map());
@@ -53,6 +54,14 @@ online = true; version = 'B';
 ck((await get('data/meta.json')) === '/kinentai/data/meta.json@B', 'オンラインで data は新しい版');
 online = false;
 ck((await get('data/meta.json')) === '/kinentai/data/meta.json@B', '更新後のオフラインでも新しい data');
+// 電波が弱く応答が返らないとき: 3秒で保存済みデータを返す
+online = true; hang = true;
+const t0 = Date.now();
+const got = await get('data/meta.json');
+ck(got === '/kinentai/data/meta.json@B', `応答なしでも保存済みデータを返す（${got}）`);
+const dt = Date.now() - t0;
+ck(dt >= 2500 && dt < 4500, `3秒前後で切り替わる（${dt}ms）`);
+hang = false;
 // 外部オリジンは処理しない
 let handled = false; handlers.fetch({ request: new Request('https://example.org/x'), respondWith: () => (handled = true) });
 ck(!handled, '外部オリジンは素通し');

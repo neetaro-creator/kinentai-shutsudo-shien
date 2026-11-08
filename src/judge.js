@@ -137,7 +137,14 @@ function judgeInner(input, data) {
   } else if (shindo === "6強") {
     eqKubun = "Ⅱ";
   } else if (shindo === "6弱" || shindo === "5強") {
-    if (!placeOk) {
+    if (place === null || place === undefined || place === "") {
+      // 観測場所が未入力。5強・6弱は観測場所（一般／政令市等／東京都特別区）で区分が変わるため、
+      // 一般として扱って誤った「対象外」にしないよう要確認（indeterminate）とする
+      problems.push("missing-place");
+      basis.push(
+        `最大震度${shindo}だが観測場所が未入力。5強・6弱は観測場所（一般／政令市等／東京都特別区）で区分が変わるため判定しない（要確認）`
+      );
+    } else if (!placeOk) {
       problems.push("unknown-place");
       basis.push(`最大震度${shindo}だが観測場所が不正: ${String(place)}`);
     } else if (shindo === "6弱") {

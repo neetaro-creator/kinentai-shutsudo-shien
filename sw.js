@@ -4,7 +4,7 @@
  * data/*.json はネットワーク優先で取得し直すため、計画の改正だけなら上げなくてもよいが、
  * 初回インストール時の内容を更新したいときは上げる。
  */
-const CACHE_VERSION = 'v5-r8-08';
+const CACHE_VERSION = 'v6-r8-08';
 const CACHE_PREFIX = 'kinentai-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 
@@ -65,18 +65,37 @@ function isDataJson(url) {
   return /\/data\/[^/]+\.json$/.test(url.pathname);
 }
 
-async function networkFirst(request) {
+// data/*.json のネットワーク応答を待つ上限（ミリ秒）。超えたらキャッシュを返す
+const NETWORK_TIMEOUT_MS = 3000;
+
+async function networkFirst(event) {
+  const request = event.request;
   const cache = await caches.open(CACHE_NAME);
-  try {
-    const res = await fetch(request, { cache: 'no-cache' });
+  const cached = await cache.match(request, { ignoreSearch: true });
+
+  // 取得は中断せず最後まで行い、成功したらキャッシュを更新する
+  const network = fetch(request, { cache: 'no-cache' }).then(async (res) => {
     if (res && res.ok) {
       await cache.put(request, res.clone());
     }
     return res;
-  } catch (err) {
-    const cached = await cache.match(request, { ignoreSearch: true });
-    if (cached) return cached;
-    throw err;
+  });
+  // タイムアウト後も取得を裏で完了させるため、SW を生かしておく
+  event.waitUntil(network.catch(() => {}));
+
+  // キャッシュがなければ従来どおり取得を待つ（失敗時は例外）
+  if (!cached) return network;
+
+  let timerId;
+  const timeout = new Promise((resolve) => {
+    timerId = setTimeout(() => resolve(cached), NETWORK_TIMEOUT_MS);
+  });
+  // 通信失敗時もキャッシュを返す
+  const safeNetwork = network.catch(() => cached);
+  try {
+    return await Promise.race([safeNetwork, timeout]);
+  } finally {
+    clearTimeout(timerId);
   }
 }
 
@@ -118,7 +137,7 @@ self.addEventListener('fetch', (event) => {
 
   if (isDataJson(url)) {
     event.respondWith(
-      networkFirst(request).catch(() => Response.error())
+      networkFirst(event).catch(() => Response.error())
     );
     return;
   }

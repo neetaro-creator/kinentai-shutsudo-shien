@@ -27,7 +27,8 @@ h3,h4{margin:.8em 0 .3em}
 .banner .icon{font-size:2rem;background:#fff;color:#000;border-radius:50%;width:2.6rem;height:2.6rem;display:inline-flex;align-items:center;justify-content:center;flex:none}
 .banner p{margin:.4em 0}
 .lv-rapid{background:var(--red);border-color:#7f0000}
-.lv-prepare{background:var(--orange);border-color:#8a3000}
+/* 白文字とのコントラスト比 約5.6（4.5以上） */
+.lv-prepare{background:#bf360c;border-color:#7a2300}
 .lv-info{background:var(--yellow);color:#000;border-color:#8a7600}
 .lv-none{background:var(--gray);border-color:#222}
 .lv-indeterminate{background:var(--blue);border-color:#0b3a75}
@@ -202,3 +203,18 @@ window.addEventListener('afterprint', () => {
 .aphint{border:3px solid #6a1b9a;background:#f8f1fb;color:#1a1a1a;border-radius:8px;padding:8px 12px;margin-top:10px}
 .aphint-item{border-top:1px dashed #6a1b9a;margin-top:6px;padding-top:6px}
 .aphint ul{margin:4px 0 8px 1.2em;padding:0}
+
+/* --- 新しい版の通知帯 --- */
+.updatebar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:center;padding:6px 12px;background:#e3f0ff;color:var(--text);border-bottom:3px solid var(--blue);font-weight:bold}
+/* --- 割当なしの注記 --- */
+.noalloc{border:3px solid var(--orange);background:#fff3e0;color:var(--text);padding:8px 12px;margin:8px 0;font-weight:bold}
+/* --- 原本との照合状況・未照合の注記 --- */
+.verif{padding:6px 12px;font-size:.9rem;background:#fff;color:var(--text);border-bottom:1px solid var(--line)}
+.note.unverified{border:2px dashed var(--gray);background:#f3f3f3;color:var(--text);padding:4px 8px;margin:4px 0 8px}
+/* --- 表示エラーの詳細（小さく） --- */
+.banner .errdetail{font-size:.8rem;overflow-wrap:anywhere}
+@media print{
+  .verif{display:block!important;border:1px solid #000;margin:0 0 4mm;padding:2mm 3mm;background:#fff;color:#000}
+  .noalloc,.note.unverified{display:block!important;border:2px solid #000!important;background:#fff!important;color:#000!important}
+  .updatebar{display:none!important}
+}
