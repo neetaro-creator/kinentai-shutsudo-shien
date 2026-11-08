@@ -2,6 +2,7 @@
 import { judge } from './src/judge.js';
 import { allocation } from './src/allocation.js';
 import { mountQuakePanel } from './src/quake-ui.js';
+import { actionPlanSections } from './src/ap-view.js';
 
 const KEY_HONBU = 'kinentai.honbu';
 const KEY_CHECK = 'kinentai.check.';
@@ -53,6 +54,8 @@ async function init(){
     D = {};
     names.forEach((n,i)=>D[n]=arr[i]);
     if (!Array.isArray(D.honbu.honbu)) throw new Error('honbu.json の形式が不正です');
+    // アクションプランの詳細は任意（読めなくても通常の判定は動く）
+    try { D.action_plans = await loadJson('action_plans.json'); } catch (e) { D.action_plans = null; }
   } catch (e){
     app.replaceChildren(el('div',{class:'error',role:'alert'},
       'データの読み込みに失敗しました。画面を表示できません。',
@@ -237,8 +240,12 @@ function renderResults(){
   }
   const res = safeJudge();
   kids.push(el('section',{class:'span2'},el('h2',null,'(1) 判定'), bannerEl(res), roleBox(h)));
-  kids.push(allocSection(res));
-  kids.push(stepsSection(res,h));
+  if (res.actionPlan && D.action_plans && D.action_plans.plans && D.action_plans.plans[res.actionPlan.key]){
+    kids.push(apSection(res, h));
+  } else {
+    kids.push(allocSection(res));
+    kids.push(stepsSection(res,h));
+  }
   kids.push(formsSection(h));
   kids.push(basisSection(res));
   resultsEl.replaceChildren(...kids.filter(Boolean));
@@ -298,6 +305,28 @@ function roleBox(h){
 }
 
 /* ---------- (2) 割当 ---------- */
+// アクションプラン該当時の節（扱い・流れ・統合機動部隊の割当（参考））
+function apSection(res, h){
+  const key = res.actionPlan.key, plan = D.action_plans.plans[key];
+  const r = D.procedure.roles || {};
+  const chief = !!(h.is_representative || h.is_representative_deputy ||
+    (r.battalion_chief_from && [r.battalion_chief_from.honbu, r.battalion_chief_from.deputy].includes(h.name)));
+  const mentionsGokan = plan.entries.some(e => /統合機動部隊/.test(e.value) && /先遣/.test(e.value));
+  let gokan = null;
+  if (mentionsGokan){
+    gokan = allocSection({ level:'rapid', units:{ gokan:'迅速出動', taitai:'なし' } });
+    const h2 = gokan.querySelector('h2');
+    if (h2) h2.replaceWith(el('h3',null,'統合機動部隊の割当（別表9-1。参考）'));
+  }
+  const wrap = el('div',{class:'span2'});
+  try { wrap.append(actionPlanSections(key, D.action_plans, h, { gokanSection: gokan, isBattalionChiefHonbu: chief })); }
+  catch (e){ wrap.append(el('p',{class:'error'},'アクションプランの表示でエラー: '+String(e&&e.message||e))); }
+  // 見出しに通し番号を付ける（判定=(1)、様式=(4)、根拠=(5) に合わせる）
+  const nums = [['アクションプランでの滋賀県大隊の扱い','(2) '],['アクションプランの流れと自本部の動き','(3) ']];
+  wrap.querySelectorAll('h2').forEach(h=>{ for (const [t,n] of nums) if (h.textContent.trim()===t) h.textContent = n+t; });
+  return wrap;
+}
+
 function allocSection(res){
   const sec = el('section',null,el('h2',null,'(2) 自本部の割当隊'));
   if (res.level !== 'rapid' && res.level !== 'prepare'){

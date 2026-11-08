@@ -4,7 +4,7 @@
  * data/*.json はネットワーク優先で取得し直すため、計画の改正だけなら上げなくてもよいが、
  * 初回インストール時の内容を更新したいときは上げる。
  */
-const CACHE_VERSION = 'v3-r8-08';
+const CACHE_VERSION = 'v4-r8-08';
 const CACHE_PREFIX = 'kinentai-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 
@@ -18,6 +18,7 @@ const PRECACHE = [
   'src/allocation.js',
   'src/quake.js',
   'src/quake-ui.js',
+  'src/ap-view.js',
   'manifest.webmanifest',
   'icon.svg',
   'data/rule_table_a.json',
@@ -28,6 +29,7 @@ const PRECACHE = [
   'data/honbu.json',
   'data/meta.json',
   'data/cities.json',
+  'data/action_plans.json',
   'data/tsunami_area_map.json'
 ];
 
